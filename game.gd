@@ -101,8 +101,8 @@ func fill_words_to_blocks():
 #			word_list_count_list.remove()
 	var total_letters = []
 	for word in sum_word_list:
-		var checkbox = CheckBox.new() ;
-		$ItemList.add_item(word,checkbox)
+		# problem yok reis
+		$ItemList.add_item(word)
 		for letter in word:
 			total_letters.append(letter)
 	total_letters.shuffle()
