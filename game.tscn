@@ -11,3 +11,12 @@ position = Vector2( 349.815, 422.613 )
 scale = Vector2( 6.12642, 8.95523 )
 z_index = -1
 texture = ExtResource( 2 )
+
+[node name="ItemList" type="ItemList" parent="."]
+margin_left = 72.0
+margin_top = 625.0
+margin_right = 618.0
+margin_bottom = 864.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
