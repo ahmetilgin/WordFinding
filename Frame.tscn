@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/boardframe.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 23.786, 23.8466 )
+
+[node name="Frame" type="StaticBody2D"]
+z_index = -2
+
+[node name="FrameRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Frame" type="CollisionShape2D" parent="."]
+position = Vector2( 24, 24 )
+shape = SubResource( 1 )

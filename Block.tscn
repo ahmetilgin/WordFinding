@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/block.png" type="Texture" id=1]
+[ext_resource path="res://Block.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 22.4519, 22.6429 )
+
+[node name="Block" type="KinematicBody2D"]
+
+[node name="block_button" type="TextureButton" parent="."]
+margin_right = 48.0
+margin_bottom = 48.0
+action_mode = 0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlockCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 24, 24 )
+z_index = -1
+shape = SubResource( 1 )
+
+[node name="DownCast" type="RayCast2D" parent="."]
+position = Vector2( 24, 24 )
+enabled = true
+cast_to = Vector2( 0, 48 )
+
+[node name="RightCast" type="RayCast2D" parent="."]
+position = Vector2( 24, 24 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 48 )
+
+[node name="LeftCast" type="RayCast2D" parent="."]
+position = Vector2( 24, 24 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 48 )
+
+[node name="UpCast" type="RayCast2D" parent="."]
+position = Vector2( 24, 24 )
+rotation = -3.14159
+enabled = true
+cast_to = Vector2( 0, 48 )
+[connection signal="pressed" from="block_button" to="block_button" method="_on_Block_pressed"]
