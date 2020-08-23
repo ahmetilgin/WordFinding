@@ -4,7 +4,7 @@
 
 [node name="background" type="Node2D"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="background" type="TextureRect" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 1 )

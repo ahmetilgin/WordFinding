@@ -25,9 +25,13 @@ Globals="*res://globals.gd"
 
 [display]
 
-window/size/width=800
-window/size/height=1200
+window/size/width=500
+window/size/height=695
 window/size/resizable=false
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 

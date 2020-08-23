@@ -1,4 +1,4 @@
-extends TextureButton
+extends TouchScreenButton
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,8 +25,8 @@ func look_around():
 	if is_raycast_collide_with_block(get_parent().get_node("RightCast")):
 		result = Globals.rotations.right
 	return result
-
-func _on_Block_pressed():
+	
+func _on_block_button_pressed():
 	var look_around_result = look_around()
 	var global_position = get_parent().get_global_position()
 	if look_around_result != Globals.rotations.none:
@@ -42,4 +42,8 @@ func _on_Block_pressed():
 		elif look_around_result == Globals.rotations.left:
 			get_parent().set_global_position(global_position + Vector2(-Globals.cell_size * Globals.divition_ratio,0))
 			pass
+	pass # Replace with function body.
+
+
+func _on_block_button_released():
 	pass # Replace with function body.
