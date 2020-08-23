@@ -6,6 +6,7 @@ var background = preload("res://Background.tscn")
 func fill_frames(position):
 	var frame = frame_scene.instance()
 	add_child(frame)
+	frame.set_z_index(1)
 	frame.set_scale(Vector2(Globals.divition_ratio,Globals.divition_ratio))
 	frame.set_global_position(position)
 
@@ -38,8 +39,7 @@ func _ready():
 			var back = background.instance()
 			add_child(back)
 			back.set_z_index(-1)
-			var back_size = back.get_node("background").rect_size
-			back.get_node("background")._set_size(back_size * Globals.divition_ratio)
+			back.set_scale(Vector2(Globals.divition_ratio,Globals.divition_ratio))
 			back.set_global_position(Vector2(x * current_cell_size + current_cell_size, y* current_cell_size + current_cell_size))
 			if x == Globals.map_size - 1 and y == Globals.map_size - 1:
 				continue
