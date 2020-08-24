@@ -1,13 +1,9 @@
 extends TouchScreenButton
 
-
+signal block_move(rot)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 
 func is_raycast_collide_with_block(raycast):
 	if !raycast.is_colliding():
@@ -42,6 +38,7 @@ func _on_block_button_pressed():
 		elif look_around_result == Globals.rotations.left:
 			get_parent().set_global_position(global_position + Vector2(-Globals.cell_size * Globals.divition_ratio,0))
 			pass
+		emit_signal("block_move",look_around_result)
 	pass # Replace with function body.
 
 

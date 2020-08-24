@@ -4,6 +4,8 @@ var frame_scene = preload("res://Frame.tscn")
 var background = preload("res://Background.tscn")
 var block_list = []
 var word_sum_list = []
+var sum_word_list = []
+var current_cell_size = 0
 func fill_frames(position):
 	var frame = frame_scene.instance()
 	add_child(frame)
@@ -17,7 +19,7 @@ func get_window_size():
 
 func _ready():
 	get_window_size()
-	var current_cell_size = Globals.cell_size * Globals.divition_ratio
+	current_cell_size = Globals.cell_size * Globals.divition_ratio
 	for x in range(0,Globals.map_size):
 		for y in range(0,Globals.map_size):	
 			if x == 0 and y == 0:
@@ -49,7 +51,8 @@ func _ready():
 			block.set_scale(Vector2(Globals.divition_ratio,Globals.divition_ratio))
 			block.set_global_position(Vector2(x *current_cell_size + current_cell_size, y* current_cell_size + current_cell_size ))
 			block_list.append(block)
-	fill_words_to_blocks()
+			block.get_node("block_button").connect("block_move",self,"block_moved")
+	fill_words_to_blocks(current_cell_size)
 	pass # Replace with function body.
 
 
@@ -61,7 +64,6 @@ static func sum_array(array):
 
 func subset_sum(numbers, target, partial=[]):
 	var s = sum_array(partial)
-
 	# check if the partial sum is equals to target
 	if s == target:
 		partial.sort()
@@ -79,12 +81,12 @@ func subset_sum(numbers, target, partial=[]):
 		subset_sum(remaining, target, partial + [n]) 
 
 
-func fill_words_to_blocks():
+func fill_words_to_blocks(current_cell_size):
 	randomize()
 	Globals.words.shuffle()
 	var word_list_with_count = {}
 	var word_list_count_list = []
-	var sum_word_list = []
+	
 	for	i in range(0,len(Globals.words)):
 		if(len(Globals.words[i]) <=  Globals.map_size):
 			var letter_count = len(Globals.words[i])
@@ -109,6 +111,34 @@ func fill_words_to_blocks():
 	
 	for	block in block_list:
 		block.set_label(total_letters.pop_back())
+		
+	$ItemList.set_size(Vector2(Globals.map_size * current_cell_size + 1, len(sum_word_list) * 20 ))
+	$ItemList.set_global_position(Vector2(current_cell_size, (Globals.map_size + 1.4) *current_cell_size ))
+
+	pass
+	
+func block_moved(pos):
+
+	var i = 0
+	var block_with_pos = {}
+	var column_letters = {}
+	
+	
+	for block in block_list:
+		var curr_pos = block.get_global_position() / current_cell_size
+		block_with_pos[curr_pos] = block.get_label()
+		if !column_letters.has(curr_pos.y):
+			column_letters[curr_pos.y] = " "
+			
+		column_letters[curr_pos.y] += block.get_label()
+
+	print(column_letters)
+	print("-------------------")
+	for column in column_letters:
+		print(column_letters[column])
+	var empty_pos = Vector2(0,0)
+	print("-------------------")
+
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -12,6 +12,9 @@ func _ready():
 
 func set_label(text):
 	$Label.set_text(text)
+	
+func get_label():
+	return $Label.get_text()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
