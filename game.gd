@@ -117,10 +117,17 @@ func fill_words_to_blocks(current_cell_size):
 
 	pass
 	
+func reverse(string):
+	var rev = ""
+	for i in range(len(string) - 1 ,-1, -1):
+		rev +=string[i]
+	return rev
+	
 func block_moved(pos):
 
 	var i = 0
 	var block_with_pos = {}
+	var pos_with_block = {}
 	var column_letters = {}
 	
 	
@@ -128,9 +135,10 @@ func block_moved(pos):
 		var curr_pos = block.get_global_position() / current_cell_size
 		curr_pos = Vector2(round(curr_pos.x),round(curr_pos.y))
 		block_with_pos[curr_pos] = block.get_label()
+		pos_with_block[curr_pos] = block
 	
 
-	print("---------------------------------")
+
 	var row_list = []
 	var col_list = []
 	for x in range(1, Globals.map_size + 1):
@@ -146,21 +154,30 @@ func block_moved(pos):
 		row_list.append(row)
 		col_list.append(col)
 	
-	for word in sum_word_list:
+	for word in sum_word_list:	
+		var reverse_word = reverse(word)
+		var col_count = 1
+		for col_word in col_list:
+			var result = col_word.find(word)
+			if (result < 0):
+				result = col_word.find(reverse_word)
+			if (result > -1):
+				for complete_word in range(1, len(word) + 1):
+					pos_with_block[Vector2(col_count, result + complete_word)].set_label("#")
+			col_count += 1
+		
 		var row_count = 1
 		for row_word in row_list:
 			var result = row_word.find(word)
-			if (row_word.find(word) > -1):
-				var res = ""
+			if (result < 0):
+				result = row_word.find(reverse_word)
+			if (result > -1):
 				for complete_word in range(1, len(word) + 1):
-					res += block_with_pos[Vector2(result + complete_word, row_count)]
+					pos_with_block[Vector2(result + complete_word, row_count)].set_label("#")
 					
-				print(res)
-				print(word, " is found " , result, Vector2(row_count,result))
-				print(row_word)
 			row_count += 1
 	
-	print("---------------------------------")
+
 #		if !column_letters.has(curr_pos.y):
 #			column_letters[curr_pos.y] = " "
 #
