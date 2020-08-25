@@ -126,18 +126,52 @@ func block_moved(pos):
 	
 	for block in block_list:
 		var curr_pos = block.get_global_position() / current_cell_size
+		curr_pos = Vector2(round(curr_pos.x),round(curr_pos.y))
 		block_with_pos[curr_pos] = block.get_label()
-		if !column_letters.has(curr_pos.y):
-			column_letters[curr_pos.y] = " "
-			
-		column_letters[curr_pos.y] += block.get_label()
+	
 
-	print(column_letters)
-	print("-------------------")
-	for column in column_letters:
-		print(column_letters[column])
-	var empty_pos = Vector2(0,0)
-	print("-------------------")
+	print("---------------------------------")
+	var row_list = []
+	var col_list = []
+	for x in range(1, Globals.map_size + 1):
+		var row = ""
+		var col = ""
+		for y in range(1, Globals.map_size + 1):
+			if !block_with_pos.has(Vector2(y,x)):
+				block_with_pos[Vector2(y,x)] = "*"
+			if !block_with_pos.has(Vector2(x,y)):
+				block_with_pos[Vector2(x,y)] = "*"
+			row +=   block_with_pos[Vector2(y,x)]
+			col +=  block_with_pos[Vector2(x,y)]
+		row_list.append(row)
+		col_list.append(col)
+	
+	for word in sum_word_list:
+		var row_count = 1
+		for row_word in row_list:
+			var result = row_word.find(word)
+			if (row_word.find(word) > -1):
+				var res = ""
+				for complete_word in range(1, len(word) + 1):
+					res += block_with_pos[Vector2(result + complete_word, row_count)]
+					
+				print(res)
+				print(word, " is found " , result, Vector2(row_count,result))
+				print(row_word)
+			row_count += 1
+	
+	print("---------------------------------")
+#		if !column_letters.has(curr_pos.y):
+#			column_letters[curr_pos.y] = " "
+#
+#		column_letters[curr_pos.y] += block.get_label()
+#
+#	print(column_letters)
+#	print("-------------------")
+#	for column in column_letters:
+#		print(column_letters[column])
+#	var empty_pos = Vector2(0,0)
+#	print("-------------------")
 
 	pass
 
