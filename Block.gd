@@ -1,6 +1,7 @@
 extends TouchScreenButton
 
 signal block_move(rot)
+signal all_block_move(pos)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -39,6 +40,9 @@ func _on_block_button_pressed():
 			get_parent().set_global_position(global_position + Vector2(-Globals.cell_size * Globals.divition_ratio,0))
 			pass
 		emit_signal("block_move",look_around_result)
+	else:
+		emit_signal("all_block_move",global_position)
+		pass
 	pass # Replace with function body.
 
 

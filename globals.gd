@@ -1,8 +1,8 @@
 extends Node
 
-var map_size = 10
+var map_size = 5
 var cell_size = 48
-var divition_ratio = 1
+var divition_ratio = 1.0
 
 enum rotations{
 	up,

@@ -25,9 +25,7 @@ Globals="*res://globals.gd"
 
 [display]
 
-window/size/width=674
-window/size/height=933
-window/size/resizable=false
+window/size/width=600
 
 [input_devices]
 

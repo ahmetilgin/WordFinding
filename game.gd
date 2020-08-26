@@ -6,6 +6,8 @@ var block_list = []
 var word_sum_list = []
 var sum_word_list = []
 var current_cell_size = 0
+var current_empty_position = Vector2()
+var pos_with_block = {}
 func fill_frames(position):
 	var frame = frame_scene.instance()
 	add_child(frame)
@@ -17,7 +19,13 @@ func get_window_size():
 	var oran = (OS.window_size / (Globals.map_size + 2)) 
 	Globals.divition_ratio = oran.x / Globals.cell_size
 
-func _ready():
+func reset_words():
+	for child in get_children():
+		if "block" in child.get_name() or "back" in child.get_name():
+			child.queue_free()
+	sum_word_list.clear()
+	block_list.clear()
+	word_sum_list.clear()
 	get_window_size()
 	current_cell_size = Globals.cell_size * Globals.divition_ratio
 	for x in range(0,Globals.map_size):
@@ -42,17 +50,28 @@ func _ready():
 			var back = background.instance()
 			add_child(back)
 			back.set_z_index(-1)
+			back.set_name("back")
 			back.set_scale(Vector2(Globals.divition_ratio,Globals.divition_ratio))
 			back.set_global_position(Vector2(x * current_cell_size + current_cell_size, y* current_cell_size + current_cell_size))
 			if x == Globals.map_size - 1 and y == Globals.map_size - 1:
+				current_empty_position = Vector2(x+1,y+1)
 				continue
 			var block = block_scene.instance()
 			add_child(block)
 			block.set_scale(Vector2(Globals.divition_ratio,Globals.divition_ratio))
+			block.set_name("block")
 			block.set_global_position(Vector2(x *current_cell_size + current_cell_size, y* current_cell_size + current_cell_size ))
 			block_list.append(block)
 			block.get_node("block_button").connect("block_move",self,"block_moved")
+			block.get_node("block_button").connect("all_block_move",self,"all_block_move_request")
+			var curr_pos = block.get_global_position() / current_cell_size
+			pos_with_block[curr_pos] = block
 	fill_words_to_blocks(current_cell_size)
+	pass
+
+
+func _ready():
+	reset_words()
 	pass # Replace with function body.
 
 
@@ -82,6 +101,7 @@ func subset_sum(numbers, target, partial=[]):
 
 
 func fill_words_to_blocks(current_cell_size):
+	$ItemList.clear()
 	randomize()
 	Globals.words.shuffle()
 	var word_list_with_count = {}
@@ -111,10 +131,9 @@ func fill_words_to_blocks(current_cell_size):
 	
 	for	block in block_list:
 		block.set_label(total_letters.pop_back())
-		
+	
 	$ItemList.set_size(Vector2(Globals.map_size * current_cell_size + 1, len(sum_word_list) * 20 ))
 	$ItemList.set_global_position(Vector2(current_cell_size, (Globals.map_size + 1.4) *current_cell_size ))
-
 	pass
 	
 func reverse(string):
@@ -127,7 +146,7 @@ func block_moved(pos):
 
 	var i = 0
 	var block_with_pos = {}
-	var pos_with_block = {}
+	pos_with_block = {}
 	var column_letters = {}
 	
 	
@@ -137,8 +156,6 @@ func block_moved(pos):
 		block_with_pos[curr_pos] = block.get_label()
 		pos_with_block[curr_pos] = block
 	
-
-
 	var row_list = []
 	var col_list = []
 	for x in range(1, Globals.map_size + 1):
@@ -146,10 +163,12 @@ func block_moved(pos):
 		var col = ""
 		for y in range(1, Globals.map_size + 1):
 			if !block_with_pos.has(Vector2(y,x)):
+				current_empty_position = Vector2(y,x)
 				block_with_pos[Vector2(y,x)] = "*"
 			if !block_with_pos.has(Vector2(x,y)):
+				current_empty_position = Vector2(x,y)
 				block_with_pos[Vector2(x,y)] = "*"
-			row +=   block_with_pos[Vector2(y,x)]
+			row +=  block_with_pos[Vector2(y,x)]
 			col +=  block_with_pos[Vector2(x,y)]
 		row_list.append(row)
 		col_list.append(col)
@@ -195,9 +214,42 @@ func block_moved(pos):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+func all_block_move_request(pos):
 
+	var current_clicked_block = pos / current_cell_size
+	current_clicked_block = Vector2(round(current_clicked_block.x),round (current_clicked_block.y))
+	var same_line_list = []
+	print(current_empty_position)
+	print(current_clicked_block)
+	if current_empty_position.x == current_clicked_block.x:
+		# aşağı kaydırma komple
+		if current_clicked_block.y < current_empty_position.y:
+			for shift in range(current_empty_position.y - 1, current_clicked_block.y -1, -1):
+				pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button")._on_block_button_pressed()
+				yield(get_tree().create_timer(0.05), "timeout")
+		# yukarı kaydırma komple
+		if current_clicked_block.y > current_empty_position.y:
+			for shift in range(current_empty_position.y + 1,current_clicked_block.y + 1):
+				pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button")._on_block_button_pressed()
+				yield(get_tree().create_timer(0.05), "timeout")
+			pass
+	elif current_empty_position.y == current_clicked_block.y:
+		# sağa kaydırma
+		if current_clicked_block.x < current_empty_position.x:
+			for shift in range(current_empty_position.x - 1, current_clicked_block.x -1, -1):
+				pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._on_block_button_pressed()
+				yield(get_tree().create_timer(0.05), "timeout")
+			pass
+		# sola kaydırma
+		if current_clicked_block.x > current_empty_position.x:
+			for shift in range(current_empty_position.x + 1,current_clicked_block.x + 1):
+				pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._on_block_button_pressed()
+				yield(get_tree().create_timer(0.05), "timeout")
+			pass
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
+#	reset_words()
 #	pass
