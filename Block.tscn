@@ -5,7 +5,7 @@
 [ext_resource path="res://block_kinematic.gd" type="Script" id=3]
 [ext_resource path="res://assets/Helvetica.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="Shader" id=10]
+[sub_resource type="Shader" id=1]
 code = "shader_type spatial;
 
 
@@ -33,13 +33,13 @@ void light() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=9]
-shader = SubResource( 10 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 16.1403, 15.9239 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -47,7 +47,7 @@ use_filter = true
 font_data = ExtResource( 4 )
 
 [node name="Block" type="KinematicBody2D"]
-material = SubResource( 9 )
+material = SubResource( 2 )
 script = ExtResource( 3 )
 
 [node name="block_button" type="TouchScreenButton" parent="."]
@@ -57,7 +57,7 @@ script = ExtResource( 2 )
 [node name="BlockCollision" type="CollisionShape2D" parent="."]
 position = Vector2( 24, 24 )
 z_index = 1
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="DownCast" type="RayCast2D" parent="."]
 position = Vector2( 24, 24 )
@@ -87,7 +87,7 @@ margin_left = 13.3416
 margin_top = 11.6787
 margin_right = 35.3416
 margin_bottom = 35.6787
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "w"
 align = 1
 valign = 1

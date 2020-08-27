@@ -1,12 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://assets/tile.png" type="Texture" id=2]
-[ext_resource path="res://assets/Helvetica.ttf" type="DynamicFontData" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-size = 20
-font_data = ExtResource( 3 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -22,9 +17,6 @@ margin_left = 72.0
 margin_top = 625.0
 margin_right = 618.0
 margin_bottom = 864.0
-custom_fonts/font = SubResource( 1 )
-max_columns = 4
-same_column_width = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

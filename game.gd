@@ -221,18 +221,22 @@ func set_checked_word(word):
 		print($ItemList.get_item_text(index))
 		if($ItemList.get_item_text(index)  == word):
 			var item_list_icon = ImageTexture.new()
-			var img = Image.new()
-			img.load("res://assets/checkbox_checked.png")
-			item_list_icon.create_from_image(img)
+			var img = load("res://assets/checkbox_checked.png")
+			var image_texture = img.get_data()
+			image_texture.lock()
+			item_list_icon.create_from_image(image_texture)
 			$ItemList.set_item_icon(index,item_list_icon)
 			$ItemList.set_item_custom_fg_color(index,Color(0,1,0,1))
+			image_texture.unlock()
 	pass
 func add_item_to_list(word):
 	var item_list_icon = ImageTexture.new()
-	var img = Image.new()
-	img.load("res://assets/checkbox_unchecked.png")
-	item_list_icon.create_from_image(img)
+	var img = load("res://assets/checkbox_unchecked.png")
+	var image_texture = img.get_data()
+	image_texture.lock()
+	item_list_icon.create_from_image(image_texture)
 	$ItemList.add_item(word, item_list_icon, false)
+	image_texture.unlock()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

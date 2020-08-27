@@ -25,8 +25,8 @@ Globals="*res://globals.gd"
 
 [display]
 
-window/size/width=642
-window/size/height=900
+window/size/width=500
+window/size/height=700
 window/handheld/orientation="portrait"
 
 [input_devices]
