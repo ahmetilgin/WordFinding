@@ -8,6 +8,8 @@ var sum_word_list = []
 var current_cell_size = 0
 var current_empty_position = Vector2()
 var pos_with_block = {}
+
+
 func fill_frames(position):
 	var frame = frame_scene.instance()
 	add_child(frame)
@@ -125,7 +127,7 @@ func fill_words_to_blocks(current_cell_size):
 	var total_letters = []
 	for word in sum_word_list:
 		# problem yok reis
-		$ItemList.add_item(word)
+		add_item_to_list(word)
 		for letter in word:
 			total_letters.append(letter)
 	total_letters.shuffle()
@@ -133,7 +135,7 @@ func fill_words_to_blocks(current_cell_size):
 	for	block in block_list:
 		block.set_label(total_letters.pop_back())
 	
-	$ItemList.set_size(Vector2(Globals.map_size * current_cell_size + 1, len(sum_word_list) * 20 ))
+	$ItemList.set_size(Vector2(Globals.map_size * current_cell_size + 1, $ItemList.get_size().y))
 	$ItemList.set_global_position(Vector2(current_cell_size, (Globals.map_size + 1.4) *current_cell_size ))
 	pass
 	
@@ -174,7 +176,7 @@ func block_moved(pos):
 		row_list.append(row)
 		col_list.append(col)
 	
-	for word in sum_word_list:	
+	for word in sum_word_list:
 		var reverse_word = reverse(word)
 		var col_count = 1
 		for col_word in col_list:
@@ -184,6 +186,9 @@ func block_moved(pos):
 			if (result > -1):
 				for complete_word in range(1, len(word) + 1):
 					pos_with_block[Vector2(col_count, result + complete_word)].set_label("#")
+					set_checked_word(word)
+					
+
 			col_count += 1
 		
 		var row_count = 1
@@ -194,9 +199,9 @@ func block_moved(pos):
 			if (result > -1):
 				for complete_word in range(1, len(word) + 1):
 					pos_with_block[Vector2(result + complete_word, row_count)].set_label("#")
+					set_checked_word(word)
 					
 			row_count += 1
-	
 
 #		if !column_letters.has(curr_pos.y):
 #			column_letters[curr_pos.y] = " "
@@ -211,14 +216,30 @@ func block_moved(pos):
 #	print("-------------------")
 
 	pass
-
+func set_checked_word(word):
+	for index in range(0,$ItemList.get_item_count()):
+		print($ItemList.get_item_text(index))
+		if($ItemList.get_item_text(index)  == word):
+			var item_list_icon = ImageTexture.new()
+			var img = Image.new()
+			img.load("res://assets/checkbox_checked.png")
+			item_list_icon.create_from_image(img)
+			$ItemList.set_item_icon(index,item_list_icon)
+			$ItemList.set_item_custom_fg_color(index,Color(0,1,0,1))
+	pass
+func add_item_to_list(word):
+	var item_list_icon = ImageTexture.new()
+	var img = Image.new()
+	img.load("res://assets/checkbox_unchecked.png")
+	item_list_icon.create_from_image(img)
+	$ItemList.add_item(word, item_list_icon, false)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
 # todo yoksa basma
 func all_block_move_request(pos):
-
+	get_tree().get_root().set_disable_input(true)
 	var current_clicked_block = pos / current_cell_size
 	current_clicked_block = Vector2(round(current_clicked_block.x),round (current_clicked_block.y))
 	var same_line_list = []
@@ -235,24 +256,23 @@ func all_block_move_request(pos):
 			for shift in range(current_empty_position.y + 1,current_clicked_block.y + 1):
 				pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button")._on_block_button_pressed()
 				yield(get_tree().create_timer(0.05), "timeout")
-			pass
 	elif current_empty_position.y == current_clicked_block.y:
 		# sağa kaydırma
 		if current_clicked_block.x < current_empty_position.x:
 			for shift in range(current_empty_position.x - 1, current_clicked_block.x -1, -1):
 				pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._on_block_button_pressed()
 				yield(get_tree().create_timer(0.05), "timeout")
-			pass
 		# sola kaydırma
 		if current_clicked_block.x > current_empty_position.x:
 			for shift in range(current_empty_position.x + 1,current_clicked_block.x + 1):
 				pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._on_block_button_pressed()
 				yield(get_tree().create_timer(0.05), "timeout")
-			pass
+				
+	get_tree().get_root().set_disable_input(false)
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	reset_words()
-	pass
+#func _process(delta):
+#	reset_words()
+#	pass
