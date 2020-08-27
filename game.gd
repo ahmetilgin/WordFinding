@@ -18,6 +18,7 @@ func fill_frames(position):
 func get_window_size():
 	var oran = (OS.window_size / (Globals.map_size + 2)) 
 	Globals.divition_ratio = oran.x / Globals.cell_size
+	print(OS.window_size)
 
 func reset_words():
 	for child in get_children():
@@ -214,6 +215,8 @@ func block_moved(pos):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+# todo yoksa basma
 func all_block_move_request(pos):
 
 	var current_clicked_block = pos / current_cell_size
@@ -250,6 +253,6 @@ func all_block_move_request(pos):
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	reset_words()
-#	pass
+func _process(delta):
+	reset_words()
+	pass
