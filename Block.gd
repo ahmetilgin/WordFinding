@@ -39,6 +39,7 @@ func _on_block_button_pressed():
 		elif look_around_result == Globals.rotations.left:
 			get_parent().set_global_position(global_position + Vector2(-Globals.cell_size * Globals.divition_ratio,0))
 			pass
+		get_parent().get_node("MoveSound").play()
 		emit_signal("block_move",look_around_result)
 	else:
 		emit_signal("all_block_move",global_position)
