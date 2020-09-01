@@ -1,11 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://assets/freegui/png/BG.png" type="Texture" id=2]
 [ext_resource path="res://assets/Helvetica.ttf" type="DynamicFontData" id=3]
 
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 20.0
+bg_color = Color( 0.976471, 0.588235, 0.211765, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.301961, 0.188235, 0.0666667, 1 )
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [sub_resource type="DynamicFont" id=1]
-size = 36
+size = 32
 font_data = ExtResource( 3 )
 
 [node name="Game" type="Node2D"]
@@ -18,11 +32,15 @@ z_index = -1
 texture = ExtResource( 2 )
 
 [node name="ItemList" type="ItemList" parent="."]
-margin_left = 54.0
+margin_left = 54.209
 margin_top = 607.0
-margin_right = 498.0
+margin_right = 498.209
 margin_bottom = 803.0
+custom_styles/bg = SubResource( 2 )
 custom_fonts/font = SubResource( 1 )
+custom_constants/icon_margin = 5
+auto_height = true
+max_columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -5,8 +5,7 @@
 [node name="background" type="Node2D"]
 
 [node name="background" type="TextureRect" parent="."]
-margin_right = 48.0
-margin_bottom = 48.0
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
