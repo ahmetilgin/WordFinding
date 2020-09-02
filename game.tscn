@@ -52,7 +52,6 @@ margin_bottom = 820.0
 custom_styles/bg = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
 custom_constants/icon_margin = 5
-auto_height = true
 max_columns = 2
 same_column_width = true
 __meta__ = {

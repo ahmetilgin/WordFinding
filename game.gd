@@ -69,6 +69,7 @@ func reset_words():
 			block.get_node("block_button").connect("block_move",self,"block_moved")
 			block.get_node("block_button").connect("all_block_move",self,"all_block_move_request")
 			var curr_pos = block.get_global_position() / current_cell_size
+			curr_pos = Vector2(round(curr_pos.x),round(curr_pos.y))
 			pos_with_block[curr_pos] = block
 	fill_words_to_blocks(current_cell_size)
 	pass
@@ -90,10 +91,12 @@ static func sum_array(array):
 func subset_sum(numbers, target, partial=[]):
 	var s = sum_array(partial)
 	# check if the partial sum is equals to target
+
+	if len(word_sum_list) > 5:
+		return
 	if s == target:
 		partial.sort()
-		if len(word_sum_list) > 5:
-			return
+
 		word_sum_list.push_back(partial)
 	if s >= target:
 		return  # if we reach the number why bother to continue
