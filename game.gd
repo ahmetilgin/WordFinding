@@ -21,6 +21,7 @@ func get_window_size():
 	var oran = (OS.window_size / (Globals.map_size + 2)) 
 	Globals.divition_ratio = oran.x / Globals.cell_size
 	print(OS.window_size)
+	$Camera2D.set_position($Camera2D.position - Vector2(0,OS.window_size.y / 8))
 
 func reset_words():
 	for child in get_children():
@@ -52,7 +53,7 @@ func reset_words():
 
 			var back = background.instance()
 			add_child(back)
-			back.set_z_index(-1)
+			back.set_z_index(0)
 			back.set_name("back")
 			back.set_scale(Vector2(Globals.divition_ratio,Globals.divition_ratio))
 			back.set_global_position(Vector2(x * current_cell_size + current_cell_size, y* current_cell_size + current_cell_size))
@@ -75,7 +76,6 @@ func reset_words():
 var border_width = Vector2(5, 5)
 func _ready():
 	reset_words()
-	 
 	$Panel.set_global_position(Vector2(current_cell_size     ,current_cell_size   ) - border_width)
 	$Panel.set_size(border_width * 2 + Vector2(current_cell_size,current_cell_size) * Globals.map_size)
 	pass # Replace with function body.
@@ -239,6 +239,7 @@ func add_item_to_list(word):
 	image_texture.lock()
 	item_list_icon.create_from_image(image_texture)
 	$ItemList.add_item(word, item_list_icon, false)
+	$ItemList.set_item_custom_fg_color($ItemList.get_item_count() - 1, Color(0.01,0,0,1))
 	image_texture.unlock()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

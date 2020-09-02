@@ -11,10 +11,10 @@ func _ready():
 	pass # Replace with function body.
 
 func set_label(text):
-	$Label.set_text(text)
+	$block_button/Label.set_text(text)
 	
 func get_label():
-	return $Label.get_text()
+	return $block_button/Label.get_text()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

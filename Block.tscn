@@ -38,14 +38,14 @@ void light() {
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 16.1403, 15.9239 )
-
 [sub_resource type="DynamicFont" id=4]
-size = 500
-outline_size = 10
+size = 1024
+outline_size = 20
 use_filter = true
 font_data = ExtResource( 4 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16.1403, 15.9239 )
 
 [node name="Block" type="KinematicBody2D"]
 material = SubResource( 2 )
@@ -53,12 +53,31 @@ script = ExtResource( 3 )
 
 [node name="block_button" type="TouchScreenButton" parent="."]
 scale = Vector2( 0.25, 0.25 )
+z_index = 1
 normal = ExtResource( 1 )
 pressed = ExtResource( 6 )
 script = ExtResource( 2 )
 
+[node name="Label" type="Label" parent="block_button"]
+margin_left = -27.4524
+margin_top = -29.3785
+margin_right = 2409.55
+margin_bottom = 2445.62
+rect_scale = Vector2( 0.1, 0.1 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+text = "w"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BlockCollision" type="CollisionShape2D" parent="."]
-position = Vector2( 24, 24 )
+position = Vector2( 24.0834, 24.0834 )
 z_index = 1
 shape = SubResource( 3 )
 
@@ -84,24 +103,6 @@ position = Vector2( 24, 24 )
 rotation = -3.14159
 enabled = true
 cast_to = Vector2( 0, 35.817 )
-
-[node name="Label" type="Label" parent="."]
-margin_left = 12.467
-margin_top = 8.767
-margin_right = 484.467
-margin_bottom = 582.767
-rect_scale = Vector2( 0.05, 0.05 )
-custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
-text = "w"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )

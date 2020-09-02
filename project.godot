@@ -25,7 +25,7 @@ Globals="*res://globals.gd"
 
 [display]
 
-window/size/width=500
+window/size/width=599
 window/size/height=700
 window/handheld/orientation="portrait"
 
