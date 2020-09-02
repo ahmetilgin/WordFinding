@@ -72,9 +72,12 @@ func reset_words():
 	fill_words_to_blocks(current_cell_size)
 	pass
 
-
+var border_width = Vector2(5, 5)
 func _ready():
 	reset_words()
+	 
+	$Panel.set_global_position(Vector2(current_cell_size     ,current_cell_size   ) - border_width)
+	$Panel.set_size(border_width * 2 + Vector2(current_cell_size,current_cell_size) * Globals.map_size)
 	pass # Replace with function body.
 
 

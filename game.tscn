@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://assets/freegui/png/BG.png" type="Texture" id=2]
 [ext_resource path="res://assets/Helvetica.ttf" type="DynamicFontData" id=3]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 20.0
 bg_color = Color( 0.976471, 0.588235, 0.211765, 1 )
 border_width_left = 10
@@ -18,9 +18,22 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.0784314, 0.737255, 0.784314, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0.145098, 0.141176, 0.141176, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -28,7 +41,7 @@ script = ExtResource( 1 )
 [node name="tile" type="Sprite" parent="."]
 position = Vector2( 405.011, 304.106 )
 scale = Vector2( 2.31811, 2.63509 )
-z_index = -1
+z_index = -3
 texture = ExtResource( 2 )
 
 [node name="ItemList" type="ItemList" parent="."]
@@ -36,11 +49,21 @@ margin_left = 54.209
 margin_top = 607.0
 margin_right = 498.209
 margin_bottom = 803.0
-custom_styles/bg = SubResource( 2 )
-custom_fonts/font = SubResource( 1 )
+custom_styles/bg = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_constants/icon_margin = 5
 auto_height = true
 max_columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = -0.000152588
+margin_top = -0.00012207
+margin_right = 38.9999
+margin_bottom = 39.9999
+custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
