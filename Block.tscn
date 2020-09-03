@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/block5.png" type="Texture" id=1]
 [ext_resource path="res://Block.gd" type="Script" id=2]
@@ -6,6 +6,13 @@
 [ext_resource path="res://assets/Helvetica.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/slide_sound.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/block3.png" type="Texture" id=6]
+[ext_resource path="res://assets/star/star2.png" type="Texture" id=7]
+[ext_resource path="res://assets/star/star3.png" type="Texture" id=8]
+[ext_resource path="res://assets/star/star4.png" type="Texture" id=9]
+[ext_resource path="res://assets/star/star5.png" type="Texture" id=10]
+[ext_resource path="res://assets/star/star1.png" type="Texture" id=11]
+[ext_resource path="res://assets/star/star6.png" type="Texture" id=12]
+[ext_resource path="res://assets/star/star7.png" type="Texture" id=13]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type spatial;
@@ -38,14 +45,27 @@ void light() {
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 1024
 outline_size = 75
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "correct",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 16.1403, 15.9239 )
 
 [node name="Block" type="KinematicBody2D"]
@@ -68,7 +88,7 @@ margin_top = -29.3785
 margin_right = 2409.55
 margin_bottom = 2445.62
 rect_scale = Vector2( 0.1, 0.1 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
@@ -80,10 +100,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CorrectSprite" type="AnimatedSprite" parent="block_button"]
+visible = false
+position = Vector2( -44.3235, -49.1882 )
+scale = Vector2( 0.7, 0.7 )
+frames = SubResource( 4 )
+centered = false
+
 [node name="BlockCollision" type="CollisionShape2D" parent="."]
 position = Vector2( 24.0834, 24.0834 )
 z_index = 1
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="DownCast" type="RayCast2D" parent="."]
 position = Vector2( 24, 24 )
@@ -112,3 +139,4 @@ cast_to = Vector2( 0, 35.817 )
 stream = ExtResource( 5 )
 attenuation = 0.120742
 [connection signal="released" from="block_button" to="block_button" method="_on_block_button_pressed"]
+[connection signal="animation_finished" from="block_button/CorrectSprite" to="." method="_on_CorrectSprite_animation_finished"]

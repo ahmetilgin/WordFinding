@@ -9,7 +9,7 @@ var current_cell_size = 0
 var current_empty_position = Vector2()
 var pos_with_block = {}
 
-
+signal correct_word
 func fill_frames(position):
 	var frame = frame_scene.instance()
 	add_child(frame)
@@ -191,7 +191,10 @@ func block_moved(pos):
 				result = col_word.find(reverse_word)
 			if (result > -1):
 				for complete_word in range(1, len(word) + 1):
-					pos_with_block[Vector2(col_count, result + complete_word)].set_label("#")
+					correcting_word(col_count,result + complete_word)
+#					pos_with_block[Vector2(col_count, result + complete_word)].set_label(" ")
+#					pos_with_block[Vector2(col_count, result + complete_word)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
+#					pos_with_block[Vector2(col_count, result + complete_word)].emit_signal("correct_word")
 					set_checked_word(word)
 					
 
@@ -204,11 +207,19 @@ func block_moved(pos):
 				result = row_word.find(reverse_word)
 			if (result > -1):
 				for complete_word in range(1, len(word) + 1):
-					pos_with_block[Vector2(result + complete_word, row_count)].set_label("#")
+					correcting_word(result + complete_word,row_count)
+#					pos_with_block[Vector2(result + complete_word, row_count)].set_label(" ")
+#					pos_with_block[Vector2(result + complete_word, row_count)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
+#					pos_with_block[Vector2(result + complete_word, row_count)].emit_signal("correct_word")
 					set_checked_word(word)
 					
+					
 			row_count += 1
-
+func correcting_word(start_point,count):
+	pos_with_block[Vector2(start_point, count)].set_label(" ")
+	pos_with_block[Vector2(start_point, count)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
+	pos_with_block[Vector2(start_point, count)].on_correct_word()
+	pass
 #		if !column_letters.has(curr_pos.y):
 #			column_letters[curr_pos.y] = " "
 #
