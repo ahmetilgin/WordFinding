@@ -102,10 +102,10 @@ __meta__ = {
 
 [node name="CorrectSprite" type="AnimatedSprite" parent="block_button"]
 visible = false
-position = Vector2( -44.3235, -49.1882 )
+position = Vector2( 95.3699, 90.5052 )
 scale = Vector2( 0.7, 0.7 )
+z_index = 3
 frames = SubResource( 4 )
-centered = false
 
 [node name="BlockCollision" type="CollisionShape2D" parent="."]
 position = Vector2( 24.0834, 24.0834 )
