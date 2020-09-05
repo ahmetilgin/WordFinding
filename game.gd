@@ -196,8 +196,7 @@ func block_moved(pos):
 #					pos_with_block[Vector2(col_count, result + complete_word)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
 #					pos_with_block[Vector2(col_count, result + complete_word)].emit_signal("correct_word")
 					set_checked_word(word)
-					
-
+				sum_word_list.erase(word)
 			col_count += 1
 		
 		var row_count = 1
@@ -212,8 +211,7 @@ func block_moved(pos):
 #					pos_with_block[Vector2(result + complete_word, row_count)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
 #					pos_with_block[Vector2(result + complete_word, row_count)].emit_signal("correct_word")
 					set_checked_word(word)
-					
-					
+				sum_word_list.erase(word)
 			row_count += 1
 func correcting_word(start_point,count):
 	pos_with_block[Vector2(start_point, count)].set_label(" ")
