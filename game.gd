@@ -77,12 +77,22 @@ func reset_words():
 
 var border_width = Vector2(5, 5)
 var normal_window_size = Vector2(524 , 820) 
+
 func _ready():
+	var screen_size = get_node(".").get_viewport_rect().size
+	var screen_size_calibration = (screen_size )/ normal_window_size
 	reset_words()
 	$Panel.set_global_position(Vector2(current_cell_size     ,current_cell_size   ) - border_width)
 	$Panel.set_size(border_width * 2 + Vector2(current_cell_size,current_cell_size) * Globals.map_size)
 	$ScoreTexture.set_global_position($Camera2D.position )
-	$ScoreTexture.set_scale($ScoreTexture.get_scale() * (normal_window_size.x / normal_window_size.y) * (Globals.divition_ratio))
+	$ScoreTexture.scale *= screen_size_calibration.x
+	$ScoreTexture.scale *= Globals.map_size / 5
+	$ButtonTexture.global_position.y *= screen_size_calibration.y 
+	$ButtonTexture.global_position.y += $Camera2D.position.y  
+	print($Camera2D.position.y  )
+	$ButtonTexture.scale *= screen_size_calibration.x
+	$ButtonTexture.scale *= Globals.map_size / 5
+	#$ScoreTexture.set_scale($ScoreTexture.get_scale() * (normal_window_size.x / normal_window_size.y) * (Globals.divition_ratio))
 	
 	
 
