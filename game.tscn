@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://assets/freegui/png/BG.png" type="Texture" id=2]
 [ext_resource path="res://assets/Helvetica.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/topgui.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 20.0
@@ -35,6 +36,10 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="DynamicFont" id=4]
+size = 100
+font_data = ExtResource( 3 )
+
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -65,6 +70,25 @@ custom_styles/panel = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ScoreTexture" type="Sprite" parent="."]
+scale = Vector2( 0.382, 0.382 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Score" type="RichTextLabel" parent="ScoreTexture"]
+margin_left = 1112.45
+margin_top = 164.0
+margin_right = 1305.45
+margin_bottom = 286.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StarLastPos" type="Position2D" parent="ScoreTexture"]
+position = Vector2( 1020.77, 217.756 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

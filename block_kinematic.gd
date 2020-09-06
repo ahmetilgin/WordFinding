@@ -1,11 +1,11 @@
 extends KinematicBody2D
- 
+signal increase_score
 var move_star = Tween.new()
 var scale_star = Tween.new()
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var star_count_pos = Vector2(400, 0)
+
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
 	add_child(move_star)
@@ -16,12 +16,13 @@ func _ready():
 func on_correct_word():
 	if $block_button/CorrectSprite.visible:
 		$block_button/CorrectSprite.play("correct")
-		move_star.interpolate_property($block_button/CorrectSprite, "global_position", $block_button/CorrectSprite.get_global_position(), star_count_pos, 1.0 ,Tween.TRANS_BACK,Tween.EASE_IN)
+		move_star.interpolate_property($block_button/CorrectSprite, "global_position", $block_button/CorrectSprite.get_global_position(), get_parent().get_node("ScoreTexture/StarLastPos").get_global_position(), 1.5 ,Tween.TRANS_BACK,Tween.EASE_IN)
 		move_star.start()
 
 func on_tween_started(key, pos):
 	$block_button/CorrectSprite.set_visible(true)
 func star_pos_edit(key, pos):
+	emit_signal("increase_score")
 	$block_button/CorrectSprite.set_visible(false)
 	$block_button/CorrectSprite.set_global_position($BlockCollision.get_global_position())
 	scale_star.interpolate_property($block_button/CorrectSprite, "scale", Vector2(0.01, 0.01), Vector2(0.7, 0.7), 1.0 ,Tween.TRANS_LINEAR)

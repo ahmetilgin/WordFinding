@@ -8,7 +8,7 @@ var sum_word_list = []
 var current_cell_size = 0
 var current_empty_position = Vector2()
 var pos_with_block = {}
-
+var score = 0
 signal correct_word
 func fill_frames(position):
 	var frame = frame_scene.instance()
@@ -64,6 +64,7 @@ func reset_words():
 			add_child(block)
 			block.set_scale(Vector2(Globals.divition_ratio,Globals.divition_ratio))
 			block.set_name("block")
+			block.connect("increase_score",self,"on_increase_score")
 			block.set_global_position(Vector2(x *current_cell_size + current_cell_size, y* current_cell_size + current_cell_size ))
 			block_list.append(block)
 			block.get_node("block_button").connect("block_move",self,"block_moved")
@@ -75,10 +76,16 @@ func reset_words():
 	pass
 
 var border_width = Vector2(5, 5)
+var normal_window_size = Vector2(524 , 820) 
 func _ready():
 	reset_words()
 	$Panel.set_global_position(Vector2(current_cell_size     ,current_cell_size   ) - border_width)
 	$Panel.set_size(border_width * 2 + Vector2(current_cell_size,current_cell_size) * Globals.map_size)
+	$ScoreTexture.set_global_position($Camera2D.position )
+	$ScoreTexture.set_scale($ScoreTexture.get_scale() * (normal_window_size.x / normal_window_size.y) * (Globals.divition_ratio))
+	
+	
+
 	pass # Replace with function body.
 
 
@@ -152,19 +159,15 @@ func reverse(string):
 	return rev
 	
 func block_moved(pos):
-
 	var i = 0
 	var block_with_pos = {}
 	pos_with_block = {}
 	var column_letters = {}
-	
-	
 	for block in block_list:
 		var curr_pos = block.get_global_position() / current_cell_size
 		curr_pos = Vector2(round(curr_pos.x),round(curr_pos.y))
 		block_with_pos[curr_pos] = block.get_label()
 		pos_with_block[curr_pos] = block
-	
 	var row_list = []
 	var col_list = []
 	for x in range(1, Globals.map_size + 1):
@@ -181,10 +184,13 @@ func block_moved(pos):
 			col +=  block_with_pos[Vector2(x,y)]
 		row_list.append(row)
 		col_list.append(col)
-	
-	for word in sum_word_list:
+	var rev_sum_word_list = [] #büyükten küçüğe sıralanan sum_word_list
+	for rev_word in sum_word_list:
+		rev_sum_word_list.push_front(rev_word)
+	for word in rev_sum_word_list:
 		var reverse_word = reverse(word)
 		var col_count = 1
+		var row_count = 1
 		for col_word in col_list:
 			var result = col_word.find(word)
 			if (result < 0):
@@ -196,10 +202,11 @@ func block_moved(pos):
 #					pos_with_block[Vector2(col_count, result + complete_word)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
 #					pos_with_block[Vector2(col_count, result + complete_word)].emit_signal("correct_word")
 					set_checked_word(word)
+				rev_sum_word_list.erase(word)
 				sum_word_list.erase(word)
+				word = "  "
+				reverse_word = "  "
 			col_count += 1
-		
-		var row_count = 1
 		for row_word in row_list:
 			var result = row_word.find(word)
 			if (result < 0):
@@ -211,8 +218,12 @@ func block_moved(pos):
 #					pos_with_block[Vector2(result + complete_word, row_count)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
 #					pos_with_block[Vector2(result + complete_word, row_count)].emit_signal("correct_word")
 					set_checked_word(word)
+				rev_sum_word_list.erase(word)
 				sum_word_list.erase(word)
+				word = "  "
+				reverse_word = "  "
 			row_count += 1
+
 func correcting_word(start_point,count):
 	pos_with_block[Vector2(start_point, count)].set_label(" ")
 	pos_with_block[Vector2(start_point, count)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
@@ -290,7 +301,9 @@ func all_block_move_request(pos):
 				
 	get_tree().get_root().set_disable_input(false)
 	pass
-
+func on_increase_score():
+	score = score + 1
+	$ScoreTexture/Score.set_text(str(score))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
