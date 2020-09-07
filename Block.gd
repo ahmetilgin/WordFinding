@@ -1,6 +1,6 @@
 extends TouchScreenButton
 
-signal block_move(rot)
+signal block_move()
 signal all_block_move(pos)
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,25 +27,24 @@ func _on_block_button_pressed():
 	var look_around_result = look_around()
 	var global_position = get_parent().get_global_position()
 	if look_around_result != Globals.rotations.none:
+		get_tree().get_root().set_disable_input(true)
+		
 		if look_around_result == Globals.rotations.up:
 			get_parent().set_global_position(global_position + Vector2(0, - Globals.cell_size * Globals.divition_ratio))
-			pass
 		elif look_around_result == Globals.rotations.down:
 			get_parent().set_global_position(global_position + Vector2(0, Globals.cell_size * Globals.divition_ratio))
-			pass
 		elif look_around_result == Globals.rotations.right:
 			get_parent().set_global_position(global_position + Vector2(Globals.cell_size * Globals.divition_ratio,0))
-			pass
 		elif look_around_result == Globals.rotations.left:
 			get_parent().set_global_position(global_position + Vector2(-Globals.cell_size * Globals.divition_ratio,0))
-			pass
 		get_parent().get_node("MoveSound").play()
-		emit_signal("block_move",look_around_result)
+		emit_signal("block_move")
+		get_tree().get_root().set_disable_input(false)
 	else:
-		emit_signal("all_block_move",global_position)
-		pass
-	pass # Replace with function body.
+		if !get_tree().get_root().is_input_disabled():
+			emit_signal("all_block_move",global_position)
 
 
-func _on_block_button_released():
-	pass # Replace with function body.
+
+
+

@@ -21,6 +21,7 @@ func on_correct_word():
 
 func on_tween_started(key, pos):
 	$block_button/CorrectSprite.set_visible(true)
+	
 func star_pos_edit(key, pos):
 	emit_signal("increase_score")
 	$block_button/CorrectSprite.set_visible(false)
@@ -31,7 +32,9 @@ func star_pos_edit(key, pos):
 	
 func set_label(text):
 	$block_button/Label.set_text(text)
-	
+
+func set_button_text_visible(is_visible):
+	$block_button/Label.set_visible(is_visible)
 func get_label():
 	return $block_button/Label.get_text()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,4 +45,8 @@ func get_label():
 func _on_CorrectSprite_animation_finished():
 	if $block_button/CorrectSprite.get_animation() == "correct":
 		$block_button/CorrectSprite.play("default")
+	pass # Replace with function body.
+
+
+func _on_block_button_pressed():
 	pass # Replace with function body.

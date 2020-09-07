@@ -73,6 +73,7 @@ __meta__ = {
 }
 
 [node name="ScoreTexture" type="Sprite" parent="."]
+visible = false
 scale = Vector2( 0.382, 0.382 )
 texture = ExtResource( 5 )
 centered = false
@@ -96,6 +97,7 @@ anchor_mode = 0
 current = true
 
 [node name="ButtonTexture" type="Sprite" parent="."]
+visible = false
 position = Vector2( -90, 721 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )

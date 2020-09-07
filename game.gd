@@ -20,7 +20,6 @@ func fill_frames(position):
 func get_window_size():
 	var oran = (OS.window_size / (Globals.map_size + 2)) 
 	Globals.divition_ratio = oran.x / Globals.cell_size
-	print(OS.window_size)
 	$Camera2D.set_position($Camera2D.position - Vector2(0,OS.window_size.y / 8))
 
 func reset_words():
@@ -67,12 +66,13 @@ func reset_words():
 			block.connect("increase_score",self,"on_increase_score")
 			block.set_global_position(Vector2(x *current_cell_size + current_cell_size, y* current_cell_size + current_cell_size ))
 			block_list.append(block)
-			block.get_node("block_button").connect("block_move",self,"block_moved")
+			block.get_node("block_button").connect("block_move",self,"check_available_found_word")
 			block.get_node("block_button").connect("all_block_move",self,"all_block_move_request")
 			var curr_pos = block.get_global_position() / current_cell_size
 			curr_pos = Vector2(round(curr_pos.x),round(curr_pos.y))
 			pos_with_block[curr_pos] = block
 	fill_words_to_blocks(current_cell_size)
+	check_available_found_word()
 	pass
 
 var border_width = Vector2(5, 5)
@@ -82,14 +82,14 @@ func _ready():
 	var screen_size = get_node(".").get_viewport_rect().size
 	var screen_size_calibration = (screen_size )/ normal_window_size
 	reset_words()
-	$Panel.set_global_position(Vector2(current_cell_size     ,current_cell_size   ) - border_width)
+	$Panel.set_global_position(Vector2(current_cell_size, current_cell_size) - border_width)
 	$Panel.set_size(border_width * 2 + Vector2(current_cell_size,current_cell_size) * Globals.map_size)
 	$ScoreTexture.set_global_position($Camera2D.position )
 	$ScoreTexture.scale *= screen_size_calibration.x
 	$ScoreTexture.scale *= Globals.map_size / 5
 	$ButtonTexture.global_position.y *= screen_size_calibration.y 
 	$ButtonTexture.global_position.y += $Camera2D.position.y  
-	print($Camera2D.position.y  )
+	
 	$ButtonTexture.scale *= screen_size_calibration.x
 	$ButtonTexture.scale *= Globals.map_size / 5
 	#$ScoreTexture.set_scale($ScoreTexture.get_scale() * (normal_window_size.x / normal_window_size.y) * (Globals.divition_ratio))
@@ -134,7 +134,7 @@ func fill_words_to_blocks(current_cell_size):
 	var word_list_count_list = []
 	
 	for	i in range(0,len(Globals.words)):
-		if(len(Globals.words[i]) <=  Globals.map_size):
+		if(len(Globals.words[i]) <=  Globals.map_size and len(Globals.words[i]) == 2):
 			var letter_count = len(Globals.words[i])
 			if !word_list_with_count.has(letter_count):
 				word_list_with_count[letter_count] = []
@@ -168,7 +168,7 @@ func reverse(string):
 		rev +=string[i]
 	return rev
 	
-func block_moved(pos):
+func check_available_found_word():
 	var i = 0
 	var block_with_pos = {}
 	pos_with_block = {}
@@ -197,25 +197,27 @@ func block_moved(pos):
 	var rev_sum_word_list = [] #büyükten küçüğe sıralanan sum_word_list
 	for rev_word in sum_word_list:
 		rev_sum_word_list.push_front(rev_word)
+	print(rev_sum_word_list)
 	for word in rev_sum_word_list:
 		var reverse_word = reverse(word)
 		var col_count = 1
 		var row_count = 1
+		var is_word_found = false
 		for col_word in col_list:
 			var result = col_word.find(word)
 			if (result < 0):
 				result = col_word.find(reverse_word)
+			print(str(result) + "-"+ col_word + "-" + word +"-"+ reverse_word)
 			if (result > -1):
 				for complete_word in range(1, len(word) + 1):
 					correcting_word(col_count,result + complete_word)
-#					pos_with_block[Vector2(col_count, result + complete_word)].set_label(" ")
-#					pos_with_block[Vector2(col_count, result + complete_word)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
-#					pos_with_block[Vector2(col_count, result + complete_word)].emit_signal("correct_word")
 					set_checked_word(word)
-				rev_sum_word_list.erase(word)
-				sum_word_list.erase(word)
-				word = "  "
-				reverse_word = "  "
+					sum_word_list.erase(word)
+					is_word_found = true
+					
+			if is_word_found:
+				break
+			
 			col_count += 1
 		for row_word in row_list:
 			var result = row_word.find(word)
@@ -224,18 +226,17 @@ func block_moved(pos):
 			if (result > -1):
 				for complete_word in range(1, len(word) + 1):
 					correcting_word(result + complete_word,row_count)
-#					pos_with_block[Vector2(result + complete_word, row_count)].set_label(" ")
-#					pos_with_block[Vector2(result + complete_word, row_count)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
-#					pos_with_block[Vector2(result + complete_word, row_count)].emit_signal("correct_word")
 					set_checked_word(word)
-				rev_sum_word_list.erase(word)
-				sum_word_list.erase(word)
-				word = "  "
-				reverse_word = "  "
+					sum_word_list.erase(word)
+					is_word_found = true
+			if is_word_found:
+				break
+
 			row_count += 1
 
 func correcting_word(start_point,count):
-	pos_with_block[Vector2(start_point, count)].set_label(" ")
+	pos_with_block[Vector2(start_point, count)].set_label("*")
+	pos_with_block[Vector2(start_point, count)].set_button_text_visible(false)
 	pos_with_block[Vector2(start_point, count)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
 	pos_with_block[Vector2(start_point, count)].on_correct_word()
 	pass
@@ -254,7 +255,6 @@ func correcting_word(start_point,count):
 	pass
 func set_checked_word(word):
 	for index in range(0,$ItemList.get_item_count()):
-		print($ItemList.get_item_text(index))
 		if($ItemList.get_item_text(index)  == word):
 			var item_list_icon = ImageTexture.new()
 			var img = load("res://assets/checkbox_checked.png")
@@ -284,8 +284,6 @@ func all_block_move_request(pos):
 	var current_clicked_block = pos / current_cell_size
 	current_clicked_block = Vector2(round(current_clicked_block.x),round (current_clicked_block.y))
 	var same_line_list = []
-	print(current_empty_position)
-	print(current_clicked_block)
 	if current_empty_position.x == current_clicked_block.x:
 		# aşağı kaydırma komple
 		if current_clicked_block.y < current_empty_position.y:
@@ -308,7 +306,7 @@ func all_block_move_request(pos):
 			for shift in range(current_empty_position.x + 1,current_clicked_block.x + 1):
 				pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._on_block_button_pressed()
 				yield(get_tree().create_timer(0.05), "timeout")
-				
+	yield(get_tree().create_timer(0.05), "timeout")
 	get_tree().get_root().set_disable_input(false)
 	pass
 func on_increase_score():
