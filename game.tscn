@@ -88,8 +88,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Timer" type="RichTextLabel" parent="ScoreTexture"]
+margin_left = 161.152
+margin_top = 158.453
+margin_right = 354.152
+margin_bottom = 280.453
+custom_fonts/normal_font = SubResource( 4 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="StarLastPos" type="Position2D" parent="ScoreTexture"]
 position = Vector2( 1020.77, 217.756 )
+
+[node name="CountTimer" type="Timer" parent="ScoreTexture"]
+autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -100,3 +114,4 @@ position = Vector2( -90, 721 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 centered = false
+[connection signal="timeout" from="ScoreTexture/CountTimer" to="." method="_on_CountTimer_timeout"]

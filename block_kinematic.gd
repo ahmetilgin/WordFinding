@@ -47,6 +47,3 @@ func _on_CorrectSprite_animation_finished():
 		$block_button/CorrectSprite.play("default")
 	pass # Replace with function body.
 
-
-func _on_block_button_pressed():
-	pass # Replace with function body.

@@ -1,6 +1,6 @@
 extends Node
 
-var map_size = 5
+var map_size = 9
 var cell_size = 48
 var divition_ratio = 1.0
 

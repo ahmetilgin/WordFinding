@@ -9,6 +9,7 @@ var current_cell_size = 0
 var current_empty_position = Vector2()
 var pos_with_block = {}
 var score = 0
+var time = 0
 signal correct_word
 func fill_frames(position):
 	var frame = frame_scene.instance()
@@ -20,7 +21,8 @@ func fill_frames(position):
 func get_window_size():
 	var oran = (OS.window_size / (Globals.map_size + 2)) 
 	Globals.divition_ratio = oran.x / Globals.cell_size
-	$Camera2D.set_position($Camera2D.position - Vector2(0,OS.window_size.y / 8))
+	$Camera2D.set_position($Camera2D.position - Vector2(0,OS.window_size.y / 5))
+	time = 120
 
 func reset_words():
 	for child in get_children():
@@ -280,7 +282,6 @@ func add_item_to_list(word):
 
 # todo yoksa basma
 func all_block_move_request(pos):
-	get_tree().get_root().set_disable_input(true)
 	var current_clicked_block = pos / current_cell_size
 	current_clicked_block = Vector2(round(current_clicked_block.x),round (current_clicked_block.y))
 	var same_line_list = []
@@ -288,26 +289,25 @@ func all_block_move_request(pos):
 		# aşağı kaydırma komple
 		if current_clicked_block.y < current_empty_position.y:
 			for shift in range(current_empty_position.y - 1, current_clicked_block.y -1, -1):
-				pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button")._on_block_button_pressed()
+				pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button").move_around()
 				yield(get_tree().create_timer(0.05), "timeout")
 		# yukarı kaydırma komple
 		if current_clicked_block.y > current_empty_position.y:
 			for shift in range(current_empty_position.y + 1,current_clicked_block.y + 1):
-				pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button")._on_block_button_pressed()
+				pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button").move_around()
 				yield(get_tree().create_timer(0.05), "timeout")
 	elif current_empty_position.y == current_clicked_block.y:
 		# sağa kaydırma
 		if current_clicked_block.x < current_empty_position.x:
 			for shift in range(current_empty_position.x - 1, current_clicked_block.x -1, -1):
-				pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._on_block_button_pressed()
+				pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button").move_around()
 				yield(get_tree().create_timer(0.05), "timeout")
 		# sola kaydırma
 		if current_clicked_block.x > current_empty_position.x:
 			for shift in range(current_empty_position.x + 1,current_clicked_block.x + 1):
-				pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._on_block_button_pressed()
+				pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button").move_around()
 				yield(get_tree().create_timer(0.05), "timeout")
-	yield(get_tree().create_timer(0.05), "timeout")
-	get_tree().get_root().set_disable_input(false)
+
 	pass
 func on_increase_score():
 	score = score + 1
@@ -317,3 +317,9 @@ func on_increase_score():
 #func _process(delta):
 #	reset_words()
 #	pass
+
+
+func _on_CountTimer_timeout():
+	time = time - 1
+	$ScoreTexture/Timer.set_text(str(time))
+	pass # Replace with function body.

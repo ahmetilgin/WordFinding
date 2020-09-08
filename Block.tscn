@@ -80,7 +80,6 @@ scale = Vector2( 0.25, 0.25 )
 z_index = 1
 normal = ExtResource( 1 )
 pressed = ExtResource( 6 )
-passby_press = true
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="block_button"]

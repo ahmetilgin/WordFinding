@@ -22,8 +22,8 @@ func look_around():
 	if is_raycast_collide_with_block(get_parent().get_node("RightCast")):
 		result = Globals.rotations.right
 	return result
-	
-func _on_block_button_pressed():
+		
+func move_around():
 	var look_around_result = look_around()
 	var global_position = get_parent().get_global_position()
 	if look_around_result != Globals.rotations.none:	
@@ -43,9 +43,11 @@ func _on_block_button_pressed():
 	else:
 		if !get_tree().get_root().is_input_disabled():
 			emit_signal("all_block_move",global_position)
-	
 
 
 
 
 
+func _on_block_button_pressed():
+	move_around()
+	pass # Replace with function body.
