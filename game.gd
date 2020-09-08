@@ -134,7 +134,7 @@ func fill_words_to_blocks(current_cell_size):
 	var word_list_count_list = []
 	
 	for	i in range(0,len(Globals.words)):
-		if(len(Globals.words[i]) <=  Globals.map_size and len(Globals.words[i]) == 2):
+		if(len(Globals.words[i]) <=  Globals.map_size):
 			var letter_count = len(Globals.words[i])
 			if !word_list_with_count.has(letter_count):
 				word_list_with_count[letter_count] = []

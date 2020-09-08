@@ -26,9 +26,8 @@ func look_around():
 func _on_block_button_pressed():
 	var look_around_result = look_around()
 	var global_position = get_parent().get_global_position()
-	if look_around_result != Globals.rotations.none:
-		get_tree().get_root().set_disable_input(true)
-		
+	if look_around_result != Globals.rotations.none:	
+		get_tree().get_root().set_disable_input(true)			
 		if look_around_result == Globals.rotations.up:
 			get_parent().set_global_position(global_position + Vector2(0, - Globals.cell_size * Globals.divition_ratio))
 		elif look_around_result == Globals.rotations.down:
@@ -38,11 +37,13 @@ func _on_block_button_pressed():
 		elif look_around_result == Globals.rotations.left:
 			get_parent().set_global_position(global_position + Vector2(-Globals.cell_size * Globals.divition_ratio,0))
 		get_parent().get_node("MoveSound").play()
-		emit_signal("block_move")
+		yield(get_tree().create_timer(0.05), "timeout")
 		get_tree().get_root().set_disable_input(false)
+		emit_signal("block_move")
 	else:
 		if !get_tree().get_root().is_input_disabled():
 			emit_signal("all_block_move",global_position)
+	
 
 
 
