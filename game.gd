@@ -10,6 +10,7 @@ var current_empty_position = Vector2()
 var pos_with_block = {}
 var score = 0
 var time = 0
+
 signal correct_word
 func fill_frames(position):
 	var frame = frame_scene.instance()
@@ -80,7 +81,9 @@ func reset_words():
 var border_width = Vector2(5, 5)
 var normal_window_size = Vector2(524 , 820) 
 
+var input = InputEventScreenTouch.new()
 func _ready():
+	input.set_index(1)
 	var screen_size = get_node(".").get_viewport_rect().size
 	var screen_size_calibration = (screen_size )/ normal_window_size
 	reset_words()
@@ -170,16 +173,18 @@ func reverse(string):
 		rev +=string[i]
 	return rev
 	
-func check_available_found_word():
-	var i = 0
-	var block_with_pos = {}
+func update_pos_with_block():
 	pos_with_block = {}
-	var column_letters = {}
+	var block_with_pos = {}
 	for block in block_list:
 		var curr_pos = block.get_global_position() / current_cell_size
 		curr_pos = Vector2(round(curr_pos.x),round(curr_pos.y))
 		block_with_pos[curr_pos] = block.get_label()
 		pos_with_block[curr_pos] = block
+	
+	return [block_with_pos,update_current_empty_pos(block_with_pos)]
+	
+func update_current_empty_pos(block_with_pos):
 	var row_list = []
 	var col_list = []
 	for x in range(1, Globals.map_size + 1):
@@ -196,6 +201,17 @@ func check_available_found_word():
 			col +=  block_with_pos[Vector2(x,y)]
 		row_list.append(row)
 		col_list.append(col)
+	return [row_list, col_list]
+func check_available_found_word():
+	var i = 0
+	var res = update_pos_with_block()
+	var block_with_pos = res[0]
+	
+	var column_letters = {}
+
+	var row_list = res[1][0]
+	var col_list = res[1][1]
+
 	var rev_sum_word_list = [] #büyükten küçüğe sıralanan sum_word_list
 	for rev_word in sum_word_list:
 		rev_sum_word_list.push_front(rev_word)
@@ -282,31 +298,37 @@ func add_item_to_list(word):
 
 # todo yoksa basma
 func all_block_move_request(pos):
-	var current_clicked_block = pos / current_cell_size
-	current_clicked_block = Vector2(round(current_clicked_block.x),round (current_clicked_block.y))
-	var same_line_list = []
-	if current_empty_position.x == current_clicked_block.x:
-		# aşağı kaydırma komple
-		if current_clicked_block.y < current_empty_position.y:
-			for shift in range(current_empty_position.y - 1, current_clicked_block.y -1, -1):
-				pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button").move_around()
-				yield(get_tree().create_timer(0.05), "timeout")
-		# yukarı kaydırma komple
-		if current_clicked_block.y > current_empty_position.y:
-			for shift in range(current_empty_position.y + 1,current_clicked_block.y + 1):
-				pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button").move_around()
-				yield(get_tree().create_timer(0.05), "timeout")
-	elif current_empty_position.y == current_clicked_block.y:
-		# sağa kaydırma
-		if current_clicked_block.x < current_empty_position.x:
-			for shift in range(current_empty_position.x - 1, current_clicked_block.x -1, -1):
-				pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button").move_around()
-				yield(get_tree().create_timer(0.05), "timeout")
-		# sola kaydırma
-		if current_clicked_block.x > current_empty_position.x:
-			for shift in range(current_empty_position.x + 1,current_clicked_block.x + 1):
-				pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button").move_around()
-				yield(get_tree().create_timer(0.05), "timeout")
+	if(!Globals.is_all_moving):
+		Globals.is_all_moving = true
+		var current_clicked_block = pos / current_cell_size
+		current_clicked_block = Vector2(round(current_clicked_block.x),round (current_clicked_block.y))
+		var same_line_list = []
+		if current_empty_position.x == current_clicked_block.x:
+			
+			# aşağı kaydırma komple
+			if current_clicked_block.y < current_empty_position.y:	
+				for shift in range(current_empty_position.y - 1, current_clicked_block.y -1, -1):
+					pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button")._go_given_rotation(Globals.rotations.down)
+					yield(get_tree().create_timer(0.2), "timeout")
+			# yukarı kaydırma komple
+			if current_clicked_block.y > current_empty_position.y:
+				for shift in range(current_empty_position.y + 1,current_clicked_block.y + 1):
+					pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button")._go_given_rotation(Globals.rotations.up)
+					yield(get_tree().create_timer(0.2), "timeout")
+				
+		elif current_empty_position.y == current_clicked_block.y:	
+			# sağa kaydırma
+			if current_clicked_block.x < current_empty_position.x:
+				for shift in range(current_empty_position.x - 1, current_clicked_block.x -1, -1):
+					pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._go_given_rotation(Globals.rotations.right)
+					yield(get_tree().create_timer(0.2), "timeout")
+			# sola kaydırma
+			if current_clicked_block.x > current_empty_position.x:
+				for shift in range(current_empty_position.x + 1,current_clicked_block.x + 1):
+					pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._go_given_rotation(Globals.rotations.left)
+					yield(get_tree().create_timer(0.2), "timeout")
+		Globals.is_all_moving = false
+		update_pos_with_block()
 
 	pass
 func on_increase_score():
@@ -317,7 +339,7 @@ func on_increase_score():
 #func _process(delta):
 #	reset_words()
 #	pass
-
+ 
 
 func _on_CountTimer_timeout():
 	time = time - 1
