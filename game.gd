@@ -92,12 +92,12 @@ func _ready():
 	$Panel.set_size(border_width * 2 + Vector2(current_cell_size,current_cell_size) * Globals.map_size)
 	$ScoreTexture.set_global_position($Camera2D.position )
 	$ScoreTexture.scale *= screen_size_calibration.x
-	$ScoreTexture.scale *= Globals.map_size / 5
+
 	$ButtonTexture.global_position.y *= screen_size_calibration.y 
 	$ButtonTexture.global_position.y += $Camera2D.position.y  
 	
 	$ButtonTexture.scale *= screen_size_calibration.x
-	$ButtonTexture.scale *= Globals.map_size / 5
+
 	#$ScoreTexture.set_scale($ScoreTexture.get_scale() * (normal_window_size.x / normal_window_size.y) * (Globals.divition_ratio))
 	
 	
@@ -235,10 +235,11 @@ func check_available_found_word():
 					sum_word_list.erase(word)
 					is_word_found = true
 				founded_words.append(word)		
+			col_count += 1
 			if is_word_found:
 				break
 			
-			col_count += 1
+			
 		for row_word in row_list:
 			var result = row_word.find(word)
 			if (result < 0):
@@ -251,12 +252,13 @@ func check_available_found_word():
 					sum_word_list.erase(word)
 					is_word_found = true
 				founded_words.append(word)
+			row_count += 1
 			if is_word_found:
 				break
 		if len(founded_words) == len(total_words):
 			$GamePlaySound.stop()
 			$GameFinishSound.play()
-			row_count += 1
+			
 
 func correcting_word(start_point,count):
 	pos_with_block[Vector2(start_point, count)].set_label("*")
