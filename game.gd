@@ -254,6 +254,7 @@ func check_available_found_word():
 			if is_word_found:
 				break
 		if len(founded_words) == len(total_words):
+			$GamePlaySound.stop()
 			$GameFinishSound.play()
 			row_count += 1
 
