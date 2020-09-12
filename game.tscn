@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://assets/freegui/png/BG.png" type="Texture" id=2]
 [ext_resource path="res://assets/Helvetica.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/bottomgui.png" type="Texture" id=4]
 [ext_resource path="res://assets/topgui.png" type="Texture" id=5]
+[ext_resource path="res://assets/FreeSounds/DM-CGS-45.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/FreeSounds/DM-CGS-22.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/FreeSounds/bensound-littleidea.wav" type="AudioStream" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 20.0
@@ -74,6 +77,7 @@ __meta__ = {
 
 [node name="ScoreTexture" type="Sprite" parent="."]
 scale = Vector2( 0.382, 0.382 )
+z_index = 5
 texture = ExtResource( 5 )
 centered = false
 
@@ -114,4 +118,20 @@ position = Vector2( -90, 721 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 centered = false
+
+[node name="FoundWordSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 241.632, 419.08 )
+stream = ExtResource( 6 )
+
+[node name="AllMoveSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 243.52, 417.192 )
+stream = ExtResource( 7 )
+attenuation = 0.517632
+
+[node name="GameFinishSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="GamePlaySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+volume_db = -3.041
+autoplay = true
 [connection signal="timeout" from="ScoreTexture/CountTimer" to="." method="_on_CountTimer_timeout"]

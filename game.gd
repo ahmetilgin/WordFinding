@@ -10,7 +10,8 @@ var current_empty_position = Vector2()
 var pos_with_block = {}
 var score = 0
 var time = 0
-
+var founded_words = []
+var total_words 
 signal correct_word
 func fill_frames(position):
 	var frame = frame_scene.instance()
@@ -153,6 +154,7 @@ func fill_words_to_blocks(current_cell_size):
 			sum_word_list.append(word_list_with_count[sum_of_list_member[word_len]].pop_back())
 #			word_list_count_list.remove()
 	var total_letters = []
+	total_words = [] + sum_word_list
 	for word in sum_word_list:
 		# problem yok reis
 		add_item_to_list(word)
@@ -215,7 +217,7 @@ func check_available_found_word():
 	var rev_sum_word_list = [] #büyükten küçüğe sıralanan sum_word_list
 	for rev_word in sum_word_list:
 		rev_sum_word_list.push_front(rev_word)
-	print(rev_sum_word_list)
+
 	for word in rev_sum_word_list:
 		var reverse_word = reverse(word)
 		var col_count = 1
@@ -225,14 +227,14 @@ func check_available_found_word():
 			var result = col_word.find(word)
 			if (result < 0):
 				result = col_word.find(reverse_word)
-			print(str(result) + "-"+ col_word + "-" + word +"-"+ reverse_word)
 			if (result > -1):
+				$FoundWordSound.play()
 				for complete_word in range(1, len(word) + 1):
 					correcting_word(col_count,result + complete_word)
 					set_checked_word(word)
 					sum_word_list.erase(word)
 					is_word_found = true
-					
+				founded_words.append(word)		
 			if is_word_found:
 				break
 			
@@ -242,14 +244,17 @@ func check_available_found_word():
 			if (result < 0):
 				result = row_word.find(reverse_word)
 			if (result > -1):
+				$FoundWordSound.play()
 				for complete_word in range(1, len(word) + 1):
 					correcting_word(result + complete_word,row_count)
 					set_checked_word(word)
 					sum_word_list.erase(word)
 					is_word_found = true
+				founded_words.append(word)
 			if is_word_found:
 				break
-
+		if len(founded_words) == len(total_words):
+			$GameFinishSound.play()
 			row_count += 1
 
 func correcting_word(start_point,count):
@@ -272,6 +277,7 @@ func correcting_word(start_point,count):
 
 	pass
 func set_checked_word(word):
+
 	for index in range(0,$ItemList.get_item_count()):
 		if($ItemList.get_item_text(index)  == word):
 			var item_list_icon = ImageTexture.new()
@@ -282,6 +288,9 @@ func set_checked_word(word):
 			$ItemList.set_item_icon(index,item_list_icon)
 			$ItemList.set_item_custom_fg_color(index,Color(0,1,0,1))
 			image_texture.unlock()
+		
+			
+
 	pass
 func add_item_to_list(word):
 	var item_list_icon = ImageTexture.new()
@@ -309,24 +318,26 @@ func all_block_move_request(pos):
 			if current_clicked_block.y < current_empty_position.y:	
 				for shift in range(current_empty_position.y - 1, current_clicked_block.y -1, -1):
 					pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button")._go_given_rotation(Globals.rotations.down)
-					yield(get_tree().create_timer(0.2), "timeout")
+					yield(get_tree().create_timer(0.01), "timeout")
 			# yukarı kaydırma komple
 			if current_clicked_block.y > current_empty_position.y:
 				for shift in range(current_empty_position.y + 1,current_clicked_block.y + 1):
 					pos_with_block[Vector2(current_clicked_block.x,shift)].get_node("block_button")._go_given_rotation(Globals.rotations.up)
-					yield(get_tree().create_timer(0.2), "timeout")
+					yield(get_tree().create_timer(0.01), "timeout")
 				
 		elif current_empty_position.y == current_clicked_block.y:	
 			# sağa kaydırma
 			if current_clicked_block.x < current_empty_position.x:
 				for shift in range(current_empty_position.x - 1, current_clicked_block.x -1, -1):
 					pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._go_given_rotation(Globals.rotations.right)
-					yield(get_tree().create_timer(0.2), "timeout")
+					yield(get_tree().create_timer(0.01), "timeout")
 			# sola kaydırma
 			if current_clicked_block.x > current_empty_position.x:
 				for shift in range(current_empty_position.x + 1,current_clicked_block.x + 1):
 					pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._go_given_rotation(Globals.rotations.left)
-					yield(get_tree().create_timer(0.2), "timeout")
+					yield(get_tree().create_timer(0.01), "timeout")
+		
+		$AllMoveSound.play()
 		Globals.is_all_moving = false
 		update_pos_with_block()
 
