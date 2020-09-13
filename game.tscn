@@ -12,7 +12,7 @@
 [ext_resource path="res://LevelFinish.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/framepanel.png" type="Texture" id=11]
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 11 )
 region_rect = Rect2( 0, 0, 219, 121 )
 
@@ -60,7 +60,7 @@ margin_left = 23.209
 margin_top = 624.0
 margin_right = 467.209
 margin_bottom = 820.0
-custom_styles/bg = SubResource( 6 )
+custom_styles/bg = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
 custom_constants/icon_margin = 5
 max_columns = 2
@@ -143,6 +143,12 @@ autoplay = true
 environment = SubResource( 5 )
 
 [node name="Control" parent="." instance=ExtResource( 10 )]
+
+[node name="ColorRect" parent="Control" index="0"]
+visible = false
+
+[node name="LevelFinish" parent="Control" index="1"]
+visible = false
 [connection signal="timeout" from="ScoreTexture/CountTimer" to="." method="_on_CountTimer_timeout"]
 
 [editable path="Control"]

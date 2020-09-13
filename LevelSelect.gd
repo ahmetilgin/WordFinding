@@ -20,25 +20,26 @@ func _on_TouchScreenButton_pressed():
 	pass # Replace with function body.
 
 
-func _on_3x3_pressed():
+func _on_3x3_released():
 	Globals.map_size = 3
 	get_tree().change_scene("res://game.tscn")
 	pass # Replace with function body.
 
-
-func _on_4x4_pressed():
+func _on_4x4_released():
 	Globals.map_size = 4
 	get_tree().change_scene("res://game.tscn")
 	pass # Replace with function body.
 
 
-func _on_5v5_pressed():
+func _on_5v5_released():
 	Globals.map_size = 5
 	get_tree().change_scene("res://game.tscn")
 	pass # Replace with function body.
 
 
-func _on_6x6_pressed():
+func _on_6x6_released():
 	Globals.map_size = 6
 	get_tree().change_scene("res://game.tscn")
 	pass # Replace with function body.
+
+

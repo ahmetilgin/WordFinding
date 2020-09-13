@@ -27,3 +27,11 @@ func _on_LevelSelect_pressed():
 	$LevelFinish.hide()
 	$Node.set_visible(true)
 	pass # Replace with function body.
+
+
+func _on_LevelSelect_released():
+	pass # Replace with function body.
+
+
+func _on_MainMenu_released():
+	pass # Replace with function body.
