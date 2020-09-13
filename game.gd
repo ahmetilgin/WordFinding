@@ -255,9 +255,7 @@ func check_available_found_word():
 			row_count += 1
 			if is_word_found:
 				break
-		if len(founded_words) == len(total_words):
-			$GamePlaySound.stop()
-			$GameFinishSound.play()
+
 			
 
 func correcting_word(start_point,count):
@@ -348,6 +346,12 @@ func all_block_move_request(pos):
 func on_increase_score():
 	score = score + 1
 	$ScoreTexture/Score.set_text(str(score))
+	if len(founded_words) == len(total_words):
+		$GamePlaySound.stop()
+		$GameFinishSound.play()
+		$Control/LevelFinish.popup()
+		$Control/ColorRect.set_visible(true)
+		$Control.set_total_star(score)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

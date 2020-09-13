@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://assets/freegui/png/BG.png" type="Texture" id=2]
@@ -9,20 +9,12 @@
 [ext_resource path="res://assets/FreeSounds/DM-CGS-22.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/FreeSounds/bensound-littleidea.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/FreeSounds/success-notification_C_major.wav" type="AudioStream" id=9]
+[ext_resource path="res://LevelFinish.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/framepanel.png" type="Texture" id=11]
 
-[sub_resource type="StyleBoxFlat" id=1]
-content_margin_left = 20.0
-bg_color = Color( 1, 1, 1, 1 )
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color( 0.254902, 0.25098, 0.839216, 1 )
-border_blend = true
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 219, 121 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
@@ -68,7 +60,7 @@ margin_left = 23.209
 margin_top = 624.0
 margin_right = 467.209
 margin_bottom = 820.0
-custom_styles/bg = SubResource( 1 )
+custom_styles/bg = SubResource( 6 )
 custom_fonts/font = SubResource( 2 )
 custom_constants/icon_margin = 5
 max_columns = 2
@@ -149,4 +141,8 @@ autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 5 )
+
+[node name="Control" parent="." instance=ExtResource( 10 )]
 [connection signal="timeout" from="ScoreTexture/CountTimer" to="." method="_on_CountTimer_timeout"]
+
+[editable path="Control"]

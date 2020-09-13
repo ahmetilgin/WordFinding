@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/freegui/png/Window.png" type="Texture" id=1]
+[ext_resource path="res://assets/freegui/png/Button.png" type="Texture" id=2]
+[ext_resource path="res://LevelSelect.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1027.05, 56.2998, 969.557, 868.697 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 134.055, 404.981, 475.346, 239.67 )
+
+[node name="Node" type="Node2D"]
+scale = Vector2( 0.392959, 0.414924 )
+script = ExtResource( 3 )
+
+[node name="LevelSelect" type="TextureRect" parent="."]
+rect_scale = Vector2( 1.23861, 1.50316 )
+texture = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="3x3" type="TouchScreenButton" parent="."]
+position = Vector2( 142.265, 433.725 )
+normal = SubResource( 2 )
+
+[node name="4x4" type="TouchScreenButton" parent="."]
+position = Vector2( 142.265, 639.725 )
+normal = SubResource( 2 )
+
+[node name="5v5" type="TouchScreenButton" parent="."]
+position = Vector2( 600.266, 435.725 )
+normal = SubResource( 2 )
+
+[node name="6x6" type="TouchScreenButton" parent="."]
+position = Vector2( 590.697, 641.939 )
+normal = SubResource( 2 )
+[connection signal="pressed" from="3x3" to="." method="_on_3x3_pressed"]
+[connection signal="pressed" from="4x4" to="." method="_on_4x4_pressed"]
+[connection signal="pressed" from="5v5" to="." method="_on_5v5_pressed"]
+[connection signal="pressed" from="6x6" to="." method="_on_6x6_pressed"]

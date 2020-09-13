@@ -16,7 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="WordFinding"
-run/main_scene="res://game.tscn"
+run/main_scene="res://MainMenu.tscn"
+boot_splash/image="res://assets/GameIcon.png"
 config/icon="res://assets/GameIcon3.png"
 
 [autoload]

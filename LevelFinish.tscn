@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/freegui/png/level_complete.png" type="Texture" id=1]
+[ext_resource path="res://assets/freegui/png/Button.png" type="Texture" id=2]
+[ext_resource path="res://assets/Helvetica.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://LevelFinish.gd" type="Script" id=4]
+[ext_resource path="res://LevelSelect.tscn" type="PackedScene" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1345.22, 2270.16, 186.912, 199.867 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+outline_size = 5
+outline_color = Color( 0.537255, 0.360784, 0.223529, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="Control" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+margin_left = -127.399
+margin_top = -115.817
+margin_right = -87.3985
+margin_bottom = -75.8168
+rect_scale = Vector2( 18.9112, 58.3489 )
+color = Color( 0, 0, 0, 0.584314 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelFinish" type="Popup" parent="."]
+anchor_right = 0.5
+anchor_bottom = 0.286
+margin_right = -237.0
+margin_bottom = -224.224
+popup_exclusive = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="LevelFinish"]
+margin_left = 59.7445
+margin_top = 62.7445
+margin_right = 774.744
+margin_bottom = 966.744
+rect_scale = Vector2( 0.492379, 0.504383 )
+texture = ExtResource( 1 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect" type="TouchScreenButton" parent="LevelFinish"]
+position = Vector2( 111.262, 439.07 )
+scale = Vector2( 0.4, 0.4 )
+normal = SubResource( 1 )
+
+[node name="TotalStar" type="RichTextLabel" parent="LevelFinish"]
+margin_left = 277.832
+margin_top = 216.022
+margin_right = 477.832
+margin_bottom = 366.022
+rect_clip_content = false
+custom_fonts/normal_font = SubResource( 2 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="TouchScreenButton" parent="LevelFinish"]
+position = Vector2( 300.404, 438.634 )
+scale = Vector2( 0.4, 0.4 )
+normal = SubResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Restart" type="TouchScreenButton" parent="LevelFinish"]
+position = Vector2( 206.625, 438.634 )
+scale = Vector2( 0.4, 0.4 )
+normal = SubResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Node" parent="." instance=ExtResource( 5 )]
+visible = false
+[connection signal="pressed" from="LevelFinish/LevelSelect" to="." method="_on_LevelSelect_pressed"]
+[connection signal="pressed" from="LevelFinish/Restart" to="." method="_on_Restart_pressed"]
