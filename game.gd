@@ -12,6 +12,7 @@ var score = 0
 var time = 0
 var founded_words = []
 var total_words 
+var border_width = Vector2(5, 5)
 signal correct_word
 func fill_frames(position):
 	var frame = frame_scene.instance()
@@ -23,7 +24,7 @@ func fill_frames(position):
 func get_window_size():
 	var oran = (OS.window_size / (Globals.map_size + 2)) 
 	Globals.divition_ratio = oran.x / Globals.cell_size
-	$Camera2D.set_position($Camera2D.position - Vector2(0,OS.window_size.y / 5))
+	$Camera2D.set_global_position($Camera2D.get_global_position() - Vector2(0,OS.window_size.y / 5))
 	time = 120
 
 func reset_words():
@@ -79,24 +80,21 @@ func reset_words():
 	check_available_found_word()
 	pass
 
-var border_width = Vector2(5, 5)
-var normal_window_size = Vector2(524 , 820) 
-
 var input = InputEventScreenTouch.new()
 func _ready():
-	input.set_index(1)
-	var screen_size = get_node(".").get_viewport_rect().size
-	var screen_size_calibration = (screen_size )/ normal_window_size
 	reset_words()
+	input.set_index(1)
+	var score_texture_size = $ScoreTexture.get_texture().get_size()
+	var score_texture_orani = OS.window_size / score_texture_size
 	$Panel.set_global_position(Vector2(current_cell_size, current_cell_size) - border_width)
 	$Panel.set_size(border_width * 2 + Vector2(current_cell_size,current_cell_size) * Globals.map_size)
-	$ScoreTexture.set_global_position($Camera2D.position )
-	$ScoreTexture.scale *= screen_size_calibration.x
+	$ScoreTexture.set_global_position($Camera2D.get_global_position())
+	$ScoreTexture.scale.x =  score_texture_orani.x
+	$ScoreTexture.scale.y =  score_texture_orani.x
 
-	$ButtonTexture.global_position.y *= screen_size_calibration.y 
 	$ButtonTexture.global_position.y += $Camera2D.position.y  
 	
-	$ButtonTexture.scale *= screen_size_calibration.x
+#	$ButtonTexture.scale *= screen_size_calibration.x
 
 	#$ScoreTexture.set_scale($ScoreTexture.get_scale() * (normal_window_size.x / normal_window_size.y) * (Globals.divition_ratio))
 	
@@ -104,8 +102,7 @@ func _ready():
 
 	pass # Replace with function body.
 
-
-static func sum_array(array):
+func sum_array(array):
 	var sum = 0.0
 	for element in array:
 		 sum += element
@@ -361,5 +358,13 @@ func on_increase_score():
 
 func _on_CountTimer_timeout():
 	time = time - 1
+	if( time > 0):
+		time = time - 1
 	$ScoreTexture/Timer.set_text(str(time))
+	if( time == 0):
+		$GamePlaySound.stop()
+		$GameFinishSound.play()
+		$Control/LevelFinish.popup()
+		$Control/ColorRect.set_visible(true)
+		$Control.set_total_star(score)
 	pass # Replace with function body.

@@ -598,7 +598,6 @@ var words = [
 	"NOTHING",
 	"NOTICE",
 	"NOW",
-	"N'T",
 	"NUMBER",
 	"OCCUR",
 	"OF",

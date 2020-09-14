@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/buttons/g2719-6.png" type="Texture" id=9]
 [ext_resource path="res://assets/buttons/g1119-0.png" type="Texture" id=10]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 50
 outline_size = 5
 outline_color = Color( 0.537255, 0.360784, 0.223529, 1 )
@@ -68,7 +68,7 @@ margin_top = 216.022
 margin_right = 477.832
 margin_bottom = 366.022
 rect_clip_content = false
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 1 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false

@@ -26,8 +26,8 @@ Globals="*res://globals.gd"
 
 [display]
 
-window/size/width=474
-window/size/height=784
+window/size/width=300
+window/size/height=533
 window/handheld/orientation="portrait"
 
 [input_devices]
@@ -36,4 +36,5 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
