@@ -24,11 +24,12 @@ script = ExtResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
-margin_left = -127.399
-margin_top = -115.817
-margin_right = -87.3985
-margin_bottom = -75.8168
-rect_scale = Vector2( 18.9112, 58.3489 )
+margin_left = -882.498
+margin_top = -538.673
+margin_right = -832.498
+margin_bottom = -488.673
+rect_scale = Vector2( 50, 50 )
+rect_pivot_offset = Vector2( -0.0145483, -0.0359873 )
 color = Color( 0, 0, 0, 0.584314 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -45,10 +46,10 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="LevelFinish"]
-margin_left = 59.7445
-margin_top = 62.7445
-margin_right = 774.744
-margin_bottom = 966.744
+margin_left = -174.34
+margin_top = -227.876
+margin_right = 540.66
+margin_bottom = 676.123
 rect_scale = Vector2( 0.492379, 0.504383 )
 texture = ExtResource( 1 )
 stretch_mode = 1
@@ -57,16 +58,16 @@ __meta__ = {
 }
 
 [node name="LevelSelect" type="TouchScreenButton" parent="LevelFinish"]
-position = Vector2( 111.262, 439.07 )
+position = Vector2( -125.076, 148.519 )
 scale = Vector2( 0.4, 0.4 )
 normal = ExtResource( 10 )
 pressed = ExtResource( 6 )
 
 [node name="TotalStar" type="RichTextLabel" parent="LevelFinish"]
-margin_left = 277.832
-margin_top = 216.022
-margin_right = 477.832
-margin_bottom = 366.022
+margin_left = 41.4942
+margin_top = -74.5287
+margin_right = 241.494
+margin_bottom = 75.4713
 rect_clip_content = false
 custom_fonts/normal_font = SubResource( 1 )
 text = "0"
@@ -75,7 +76,7 @@ __meta__ = {
 }
 
 [node name="MainMenu" type="TouchScreenButton" parent="LevelFinish"]
-position = Vector2( 300.404, 438.634 )
+position = Vector2( 64.0662, 148.083 )
 scale = Vector2( 0.4, 0.4 )
 normal = ExtResource( 2 )
 pressed = ExtResource( 9 )
@@ -84,7 +85,7 @@ __meta__ = {
 }
 
 [node name="Restart" type="TouchScreenButton" parent="LevelFinish"]
-position = Vector2( 206.625, 438.634 )
+position = Vector2( -29.7128, 148.083 )
 scale = Vector2( 0.4, 0.4 )
 normal = ExtResource( 8 )
 pressed = ExtResource( 7 )

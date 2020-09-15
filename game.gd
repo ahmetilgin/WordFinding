@@ -91,8 +91,12 @@ func _ready():
 	$ScoreTexture.set_global_position($Camera2D.get_global_position())
 	$ScoreTexture.scale.x =  score_texture_orani.x
 	$ScoreTexture.scale.y =  score_texture_orani.x
-
-	$ButtonTexture.global_position.y += $Camera2D.position.y  
+	var button_texture_size = $ButtonTexture.get_texture().get_size()
+	var button_texture_orani = OS.window_size / score_texture_size
+	$ButtonTexture.set_global_position(Vector2(0,$Camera2D.get_global_position().y + OS.window_size.y - (button_texture_size.y * button_texture_orani.x)))
+	$ButtonTexture.scale.x = button_texture_orani.x
+	$ButtonTexture.scale.y = button_texture_orani.x
+	 
 	
 #	$ButtonTexture.scale *= screen_size_calibration.x
 

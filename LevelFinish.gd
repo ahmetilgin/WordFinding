@@ -8,6 +8,15 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+ 
+	var popup_size = $LevelFinish/TextureRect.get_texture().get_size()  
+ 
+	var popup_oran = OS.window_size / popup_size
+ 
+	$ColorRect.set_global_position(Vector2(0, 0 ))
+	$LevelFinish.rect_scale.x =2 * popup_oran.x / 3
+	$LevelFinish.rect_scale.y =2 * popup_oran.x / 3
+	$LevelFinish.set_global_position(Vector2(OS.window_size.x /2  , OS.window_size.y /2  ))
 	pass # Replace with function body.
 
 

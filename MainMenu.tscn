@@ -12,7 +12,7 @@ region = Rect2( 1727.99, 1153.6, 363.5, 603.17 )
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 3 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 margin_left = -476.245
 margin_top = -546.087
 margin_right = -113.245

@@ -122,8 +122,6 @@ anchor_mode = 0
 current = true
 
 [node name="ButtonTexture" type="Sprite" parent="."]
-position = Vector2( -101.112, 1046.42 )
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 centered = false
 
