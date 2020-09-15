@@ -12,7 +12,7 @@ func _ready():
 	var oran = OS.window_size / size
 	scale.x = oran.x
 	scale.y = oran.x
-	set_global_position(Vector2(0,20))
+	set_global_position(Vector2(0,OS.window_size.y/ 2 - size.y / 4 ))
 	pass # Replace with function body.
 
 

@@ -100,5 +100,6 @@ __meta__ = {
 }
 
 [node name="Node" parent="." instance=ExtResource( 5 )]
+visible = false
 [connection signal="pressed" from="LevelFinish/LevelSelect" to="." method="_on_LevelSelect_pressed"]
 [connection signal="pressed" from="LevelFinish/Restart" to="." method="_on_Restart_pressed"]
