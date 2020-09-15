@@ -22,7 +22,7 @@ font_data = ExtResource( 3 )
 [node name="Control" type="CanvasLayer"]
 script = ExtResource( 4 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="Control" parent="."]
 visible = false
 margin_left = -882.498
 margin_top = -538.673
@@ -30,7 +30,13 @@ margin_right = -832.498
 margin_bottom = -488.673
 rect_scale = Vector2( 50, 50 )
 rect_pivot_offset = Vector2( -0.0145483, -0.0359873 )
-color = Color( 0, 0, 0, 0.584314 )
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+color = Color( 0.121569, 0.117647, 0.117647, 0.603922 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -94,6 +100,5 @@ __meta__ = {
 }
 
 [node name="Node" parent="." instance=ExtResource( 5 )]
-visible = false
 [connection signal="pressed" from="LevelFinish/LevelSelect" to="." method="_on_LevelSelect_pressed"]
 [connection signal="pressed" from="LevelFinish/Restart" to="." method="_on_Restart_pressed"]

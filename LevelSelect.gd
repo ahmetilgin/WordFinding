@@ -8,6 +8,11 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var size = get_node("3x3").get_texture().get_size()  * 2 + Vector2(3,3)
+	var oran = OS.window_size / size
+	scale.x = oran.x
+	scale.y = oran.x
+	set_global_position(Vector2(0,20))
 	pass # Replace with function body.
 
 

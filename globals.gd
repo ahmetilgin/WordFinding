@@ -4,6 +4,7 @@ var map_size = 3
 var cell_size = 48
 var divition_ratio = 1.0
 var is_all_moving = false
+var game_finish = false
 enum rotations{
 	up,
 	down,
@@ -13,6 +14,12 @@ enum rotations{
 }
 
 var words = [
+	"AAA",
+	"CIG",
+	"AA"
+]
+
+var words2 = [
 	"WHAT",
 	"NAME",
 	"BOARD",
@@ -792,8 +799,6 @@ var words = [
 	"SET",
 	"SEVEN",
 	"SEVERAL",
-	"SEX",
-	"SEXUAL",
 	"SHAKE",
 	"SHARE",
 	"SHE",

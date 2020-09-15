@@ -24,25 +24,27 @@ func look_around():
 	return result
 		
 
-func _go_given_rotation(rot):		
-	if rot == Globals.rotations.up:
-		get_parent().set_global_position(global_position + Vector2(0, - Globals.cell_size * Globals.divition_ratio))
-	elif rot == Globals.rotations.down:
-		get_parent().set_global_position(global_position + Vector2(0, Globals.cell_size * Globals.divition_ratio))
-	elif rot == Globals.rotations.right:
-		get_parent().set_global_position(global_position + Vector2(Globals.cell_size * Globals.divition_ratio,0))
-	elif rot == Globals.rotations.left:
-		get_parent().set_global_position(global_position + Vector2(-Globals.cell_size * Globals.divition_ratio,0))
+func _go_given_rotation(rot):	
+	if !Globals.game_finish:	
+		if rot == Globals.rotations.up:
+			get_parent().set_global_position(global_position + Vector2(0, - Globals.cell_size * Globals.divition_ratio))
+		elif rot == Globals.rotations.down:
+			get_parent().set_global_position(global_position + Vector2(0, Globals.cell_size * Globals.divition_ratio))
+		elif rot == Globals.rotations.right:
+			get_parent().set_global_position(global_position + Vector2(Globals.cell_size * Globals.divition_ratio,0))
+		elif rot == Globals.rotations.left:
+			get_parent().set_global_position(global_position + Vector2(-Globals.cell_size * Globals.divition_ratio,0))
 func move_around():
-	var look_around_result = look_around()
-	var global_position = get_parent().get_global_position()
-	if !Globals.is_all_moving:
-		if look_around_result != Globals.rotations.none:	
-			_go_given_rotation(look_around_result)
-			get_parent().get_node("MoveSound").play()
-			emit_signal("block_move")
-		else:
-			emit_signal("all_block_move",global_position)
+	if !Globals.game_finish:
+		var look_around_result = look_around()
+		var global_position = get_parent().get_global_position()
+		if !Globals.is_all_moving:
+			if look_around_result != Globals.rotations.none:	
+				_go_given_rotation(look_around_result)
+				get_parent().get_node("MoveSound").play()
+				emit_signal("block_move")
+			else:
+				emit_signal("all_block_move",global_position)
 
 
 

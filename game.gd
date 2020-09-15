@@ -25,7 +25,8 @@ func get_window_size():
 	var oran = (OS.window_size / (Globals.map_size + 2)) 
 	Globals.divition_ratio = oran.x / Globals.cell_size
 	$Camera2D.set_global_position($Camera2D.get_global_position() - Vector2(0,OS.window_size.y / 5))
-	time = 120
+	time = Globals.map_size * Globals.map_size * 5
+		
 
 func reset_words():
 	for child in get_children():
@@ -80,10 +81,9 @@ func reset_words():
 	check_available_found_word()
 	pass
 
-var input = InputEventScreenTouch.new()
 func _ready():
+	Globals.game_finish = false
 	reset_words()
-	input.set_index(1)
 	var score_texture_size = $ScoreTexture.get_texture().get_size()
 	var score_texture_orani = OS.window_size / score_texture_size
 	$Panel.set_global_position(Vector2(current_cell_size, current_cell_size) - border_width)
@@ -219,48 +219,55 @@ func check_available_found_word():
 	for rev_word in sum_word_list:
 		rev_sum_word_list.push_front(rev_word)
 
+	var is_word_found = false
 	for word in rev_sum_word_list:
 		var reverse_word = reverse(word)
 		var col_count = 1
 		var row_count = 1
-		var is_word_found = false
-		for col_word in col_list:
-			var result = col_word.find(word)
-			if (result < 0):
-				result = col_word.find(reverse_word)
-			if (result > -1):
-				$FoundWordSound.play()
-				for complete_word in range(1, len(word) + 1):
-					correcting_word(col_count,result + complete_word)
-					set_checked_word(word)
-					sum_word_list.erase(word)
+		if not word in founded_words:
+			for col_word in col_list:
+				var result = col_word.find(word)
+				if (result < 0):
+					result = col_word.find(reverse_word)
+				if (result > -1):
+					$FoundWordSound.play()
+					for complete_word in range(1, len(word) + 1):
+						correcting_word(col_count,result + complete_word)
+						set_checked_word(word)
 					is_word_found = true
-				founded_words.append(word)		
-			col_count += 1
+					print("Founded_word:",word)
+					print("Col List:",col_list)
+					sum_word_list.erase(word)
+					founded_words.append(word)
+					break
+				col_count += 1
+			if is_word_found:
+				break
+			for row_word in row_list:
+				var result = row_word.find(word)
+				if (result < 0):
+					result = row_word.find(reverse_word)
+				if (result > -1):
+					$FoundWordSound.play()
+					for complete_word in range(1, len(word) + 1):
+						correcting_word(result + complete_word,row_count)
+						set_checked_word(word)
+					is_word_found = true
+					sum_word_list.erase(word)
+					founded_words.append(word)
+					print("Founded_word:",word)
+					print("Row List:",row_list)
+					break
+				row_count += 1
 			if is_word_found:
 				break
 			
-			
-		for row_word in row_list:
-			var result = row_word.find(word)
-			if (result < 0):
-				result = row_word.find(reverse_word)
-			if (result > -1):
-				$FoundWordSound.play()
-				for complete_word in range(1, len(word) + 1):
-					correcting_word(result + complete_word,row_count)
-					set_checked_word(word)
-					sum_word_list.erase(word)
-					is_word_found = true
-				founded_words.append(word)
-			row_count += 1
-			if is_word_found:
-				break
-
+	if	is_word_found:
+		check_available_found_word()
 			
 
 func correcting_word(start_point,count):
-	pos_with_block[Vector2(start_point, count)].set_label("*")
+	pos_with_block[Vector2(start_point, count)].set_label("#")
 	pos_with_block[Vector2(start_point, count)].set_button_text_visible(false)
 	pos_with_block[Vector2(start_point, count)].get_node("block_button").get_node("CorrectSprite").set_visible(true)
 	pos_with_block[Vector2(start_point, count)].on_correct_word()
@@ -353,6 +360,7 @@ func on_increase_score():
 		$Control/LevelFinish.popup()
 		$Control/ColorRect.set_visible(true)
 		$Control.set_total_star(score)
+		Globals.game_finish = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -361,14 +369,15 @@ func on_increase_score():
  
 
 func _on_CountTimer_timeout():
-	time = time - 1
 	if( time > 0):
 		time = time - 1
 	$ScoreTexture/Timer.set_text(str(time))
 	if( time == 0):
-		$GamePlaySound.stop()
-		$GameFinishSound.play()
-		$Control/LevelFinish.popup()
-		$Control/ColorRect.set_visible(true)
-		$Control.set_total_star(score)
+		pass
+#		$GamePlaySound.stop()
+#		$GameFinishSound.play()
+#		$Control/LevelFinish.popup()
+#		$Control/ColorRect.set_visible(true)
+#		$Control.set_total_star(score)
+#		Globals.game_finish = true
 	pass # Replace with function body.
