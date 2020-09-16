@@ -2,9 +2,10 @@ extends KinematicBody2D
 signal increase_score
 var move_star = Tween.new()
 var scale_star = Tween.new()
+ 
 # Declare member variables here. Examples:
 # var a = 2
-# var b = "text"
+# var b = "text""get_parent().get_node("ScoreTexture/StarLastPos").get_global_position()"
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
@@ -13,6 +14,7 @@ func _ready():
 	move_star.connect("tween_completed",self,"star_pos_edit")
 	scale_star.connect("tween_started",self,"on_tween_started")
 	pass # Replace with function body.
+ 
 func on_correct_word():
 	if $block_button/CorrectSprite.visible:
 		$block_button/CorrectSprite.play("correct")

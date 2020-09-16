@@ -8,10 +8,17 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var bg_size = $Background.get_texture().get_size()  
-	var bg_oran = OS.window_size / bg_size
-	$Background.rect_size.x = bg_oran.x
-	$Background.rect_size.y = bg_oran.y
+	var topgui_size = $topgui.get_texture().get_size()  
+	var bottomgui_size = $bottomgui.get_texture().get_size()  
+	var topgui_oran = OS.window_size / topgui_size
+	var bottomgui_oran = OS.window_size / bottomgui_size
+	$BG.rect_size = OS.window_size
+	$topgui.rect_scale.x = topgui_oran.x
+	$topgui.rect_scale.y = topgui_oran.x
+	$bottomgui.rect_scale.x = bottomgui_oran.x
+	$bottomgui.rect_scale.y = bottomgui_oran.x
+	$bottomgui.set_global_position(Vector2(0,OS.window_size.y - (bottomgui_size.y * bottomgui_oran.x)))
+	$topgui.set_global_position(Vector2(0,0))
 	pass # Replace with function body.
 
 

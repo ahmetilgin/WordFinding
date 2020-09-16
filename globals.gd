@@ -13,13 +13,8 @@ enum rotations{
 	none
 }
 
-var words = [
-	"AAA",
-	"CIG",
-	"AA"
-]
 
-var words2 = [
+var words = [
 	"WHAT",
 	"NAME",
 	"BOARD",

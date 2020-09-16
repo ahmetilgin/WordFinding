@@ -35,7 +35,6 @@ func reset_words():
 	sum_word_list.clear()
 	block_list.clear()
 	word_sum_list.clear()
-	get_window_size()
 	current_cell_size = Globals.cell_size * Globals.divition_ratio
 	for x in range(0,Globals.map_size):
 		for y in range(0,Globals.map_size):	
@@ -82,15 +81,16 @@ func reset_words():
 	pass
 
 func _ready():
-	Globals.game_finish = false
-	reset_words()
+	get_window_size()
 	var score_texture_size = $ScoreTexture.get_texture().get_size()
 	var score_texture_orani = OS.window_size / score_texture_size
-	$Panel.set_global_position(Vector2(current_cell_size, current_cell_size) - border_width)
-	$Panel.set_size(border_width * 2 + Vector2(current_cell_size,current_cell_size) * Globals.map_size)
 	$ScoreTexture.set_global_position($Camera2D.get_global_position())
 	$ScoreTexture.scale.x =  score_texture_orani.x
 	$ScoreTexture.scale.y =  score_texture_orani.x
+	Globals.game_finish = false
+	reset_words()
+	$Panel.set_global_position(Vector2(current_cell_size, current_cell_size) - border_width)
+	$Panel.set_size(border_width * 2 + Vector2(current_cell_size,current_cell_size) * Globals.map_size)
 	var button_texture_size = $ButtonTexture.get_texture().get_size()
 	var button_texture_orani = OS.window_size / score_texture_size
 	$ButtonTexture.set_global_position(Vector2(0,$Camera2D.get_global_position().y + OS.window_size.y - (button_texture_size.y * button_texture_orani.x)))
