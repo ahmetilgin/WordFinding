@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://assets/mainscreetopgui.png" type="Texture" id=1]
 [ext_resource path="res://LevelSelect.tscn" type="PackedScene" id=2]
 [ext_resource path="res://MainMenu.gd" type="Script" id=3]
 [ext_resource path="res://assets/bottomgui.png" type="Texture" id=4]
@@ -22,11 +23,11 @@ anchor_mode = 0
 current = true
 
 [node name="topgui" type="TextureRect" parent="."]
-margin_left = -77.8657
+margin_left = -83.2051
 margin_top = 688.909
-margin_right = 1295.13
+margin_right = 1289.79
 margin_bottom = 943.909
-texture = ExtResource( 4 )
+texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

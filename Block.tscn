@@ -46,8 +46,8 @@ void light() {
 shader = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 1024
-outline_size = 75
+size = 128
+outline_size = 10
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 4 )
@@ -83,11 +83,10 @@ pressed = ExtResource( 6 )
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="block_button"]
-margin_left = -27.4524
-margin_top = -29.3785
-margin_right = 2409.55
-margin_bottom = 2445.62
-rect_scale = Vector2( 0.1, 0.1 )
+margin_left = -1121.48
+margin_top = -1134.09
+margin_right = 1315.53
+margin_bottom = 1340.91
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )

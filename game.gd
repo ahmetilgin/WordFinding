@@ -355,24 +355,28 @@ func on_increase_score():
 	score = score + 1
 	$ScoreTexture/Score.set_text(str(score))
 	if len(founded_words) == len(total_words):
-		$GamePlaySound.stop()
-		$GameFinishSound.play()
-		$Control/LevelFinish.popup()
-		$Control/ColorRect.set_visible(true)
-		$Control.set_total_star(score)
-		Globals.game_finish = true
-
+		level_finished()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	reset_words()
 #	pass
- 
-
+func level_finished():
+	$GamePlaySound.stop()
+	$GameFinishSound.play()
+	$Control/LevelFinish.popup()
+	$Control/ColorRect.set_visible(true)
+	$Control.sum_point(score,time)
+	$Control.set_total_star(score)
+	$Control.set_finish_time(time)
+	Globals.game_finish = true
+	$ScoreTexture/CountTimer.stop()
+	
 func _on_CountTimer_timeout():
 	if( time > 0):
 		time = time - 1
 	$ScoreTexture/Timer.set_text(str(time))
 	if( time == 0):
+		level_finished()
 		pass
 #		$GamePlaySound.stop()
 #		$GameFinishSound.play()
