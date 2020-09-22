@@ -16,8 +16,8 @@ normal = ExtResource( 2 )
 pressed = ExtResource( 1 )
 
 [node name="3x3" type="Sprite" parent="3x3"]
-position = Vector2( 224.564, 90.7561 )
-scale = Vector2( 1.83537, 1.70232 )
+position = Vector2( 225, 100 )
+scale = Vector2( 1.8, 1.8 )
 texture = ExtResource( 4 )
 
 [node name="4x4" type="TouchScreenButton" parent="."]
@@ -26,8 +26,8 @@ normal = ExtResource( 2 )
 pressed = ExtResource( 1 )
 
 [node name="4x4" type="Sprite" parent="4x4"]
-position = Vector2( 235.304, 87.4496 )
-scale = Vector2( 1.83537, 1.70232 )
+position = Vector2( 235, 100 )
+scale = Vector2( 1.8, 1.8 )
 z_index = 1
 texture = ExtResource( 5 )
 __meta__ = {
@@ -40,8 +40,8 @@ normal = ExtResource( 2 )
 pressed = ExtResource( 1 )
 
 [node name="5x5" type="Sprite" parent="5x5"]
-position = Vector2( 223.088, 92.992 )
-scale = Vector2( 1.83537, 1.70232 )
+position = Vector2( 225, 100 )
+scale = Vector2( 1.8, 1.8 )
 texture = ExtResource( 6 )
 __meta__ = {
 "_editor_description_": ""
@@ -53,8 +53,8 @@ normal = ExtResource( 2 )
 pressed = ExtResource( 1 )
 
 [node name="6x6" type="Sprite" parent="6x6"]
-position = Vector2( 217.417, 92.262 )
-scale = Vector2( 1.83537, 1.70232 )
+position = Vector2( 235, 100 )
+scale = Vector2( 1.8, 1.8 )
 texture = ExtResource( 7 )
 [connection signal="released" from="3x3" to="." method="_on_3x3_released"]
 [connection signal="released" from="4x4" to="." method="_on_4x4_released"]

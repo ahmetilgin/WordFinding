@@ -25,7 +25,8 @@ func get_window_size():
 	var oran = (OS.window_size / (Globals.map_size + 2)) 
 	Globals.divition_ratio = oran.x / Globals.cell_size
 	$Camera2D.set_global_position($Camera2D.get_global_position() - Vector2(0,OS.window_size.y / 5))
-	time = Globals.map_size * Globals.map_size * 5
+	time =round( Globals.map_size * Globals.map_size * Globals.map_size * 1.4)
+	
 		
 
 func reset_words():
@@ -347,6 +348,7 @@ func all_block_move_request(pos):
 					yield(get_tree().create_timer(0.01), "timeout")
 		
 		$AllMoveSound.play()
+		check_available_found_word()
 		Globals.is_all_moving = false
 		update_pos_with_block()
 
