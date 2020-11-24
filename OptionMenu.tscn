@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/buttons/g7765-0.png" type="Texture" id=1]
+[ext_resource path="res://assets/freegui/svg/paused.png" type="Texture" id=2]
+[ext_resource path="res://assets/buttons/g7825-2.png" type="Texture" id=3]
+[ext_resource path="res://assets/buttons/g6273-4.png" type="Texture" id=4]
+[ext_resource path="res://assets/buttons/g6333-9.png" type="Texture" id=5]
+
+[node name="OptionMenu" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 1.68179
+margin_right = 41.6818
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+
+[node name="Audio" type="Control" parent="TextureRect"]
+margin_left = 11.8111
+margin_top = 70.6393
+margin_right = 51.8111
+margin_bottom = 110.639
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFX" type="TextureButton" parent="TextureRect/Audio"]
+margin_left = 112.253
+margin_top = 179.962
+margin_right = 307.253
+margin_bottom = 383.962
+rect_scale = Vector2( 0.5, 0.5 )
+toggle_mode = true
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="TextureButton" parent="TextureRect/Audio"]
+anchor_right = 1.0
+margin_left = 243.529
+margin_top = 172.911
+margin_right = 398.529
+margin_bottom = 376.911
+rect_scale = Vector2( 0.5, 0.5 )
+toggle_mode = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 1 )
