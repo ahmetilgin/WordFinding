@@ -236,8 +236,8 @@ func check_available_found_word():
 						correcting_word(col_count,result + complete_word)
 						set_checked_word(word)
 					is_word_found = true
-					print("Founded_word:",word)
-					print("Col List:",col_list)
+#					print("Founded_word:",word)
+#					print("Col List:",col_list)
 					sum_word_list.erase(word)
 					founded_words.append(word)
 					break
@@ -256,8 +256,8 @@ func check_available_found_word():
 					is_word_found = true
 					sum_word_list.erase(word)
 					founded_words.append(word)
-					print("Founded_word:",word)
-					print("Row List:",row_list)
+#					print("Founded_word:",word)
+#					print("Row List:",row_list)
 					break
 				row_count += 1
 			if is_word_found:

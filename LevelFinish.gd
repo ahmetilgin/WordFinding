@@ -57,6 +57,39 @@ func _on_MainMenu_released():
 func _on_MoneyCount_timeout():
 	if sum_count == money_count:
 		$MoneyCount.stop()
+		save_and_increase_current_money()
 	$LevelFinish/money.set_text(str(money_count))
 	money_count += 1
 	pass # Replace with function body.
+
+func get_saved_money():
+	var save_money = File.new()
+	var saved_money = 0
+	if not save_money.file_exists("user://save_money.save"):
+		return saved_money# Error! We don't have a save to load.
+	
+	
+	save_money.open("user://save_money.save", File.READ)
+		# Get the saved dictionary from the next line in the save file
+	var node_data = parse_json(save_money.get_as_text())
+	if(node_data == null):
+		save_money.close();
+		return saved_money
+	saved_money = int(node_data["money"])
+	save_money.close();
+	return saved_money;
+	pass
+
+func save_and_increase_current_money():
+	var save_game = File.new()
+	var saved_money = get_saved_money()	
+	save_game.open("user://save_money.save", File.WRITE)
+	saved_money += money_count
+	var money_json = {
+		"money" : saved_money
+	}
+	save_game.store_line(to_json(money_json))
+	save_game.close()
+		
+
+

@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/buttons/g2719-6.png" type="Texture" id=9]
 [ext_resource path="res://assets/buttons/g1119-0.png" type="Texture" id=10]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 128
 outline_size = 8
 outline_color = Color( 0.537255, 0.360784, 0.223529, 1 )
@@ -20,7 +20,7 @@ use_filter = true
 extra_spacing_char = 12
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 128
 outline_size = 8
 outline_color = Color( 0.537255, 0.360784, 0.223529, 1 )
@@ -28,7 +28,7 @@ use_filter = true
 extra_spacing_char = 12
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 128
 outline_size = 8
 outline_color = Color( 0.537255, 0.360784, 0.223529, 1 )
@@ -86,7 +86,7 @@ margin_top = -258.386
 margin_right = 392.465
 margin_bottom = -58.3858
 rect_clip_content = false
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -114,7 +114,7 @@ margin_top = -54.1769
 margin_right = 430.496
 margin_bottom = 97.8231
 rect_clip_content = false
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
 text = "00"
 fit_content_height = true
 __meta__ = {
@@ -127,7 +127,7 @@ margin_top = 133.894
 margin_right = 352.053
 margin_bottom = 297.894
 rect_clip_content = false
-custom_fonts/normal_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 1 )
 text = "00"
 __meta__ = {
 "_edit_use_anchors_": false
