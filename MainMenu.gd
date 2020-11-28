@@ -8,6 +8,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	var topgui_size = $topgui.get_texture().get_size()  
 	var bottomgui_size = $bottomgui.get_texture().get_size()  
 	var topgui_oran = OS.window_size / topgui_size
@@ -27,3 +28,15 @@ func _ready():
 #	_ready()
 #	pass
 
+
+
+func _on_SettingButton_pressed():
+	get_tree().paused = not get_tree().paused
+	$OptionCanvas/OptionMenu.visible = true
+	pass
+ 
+
+
+func _on_ExitButton_pressed():
+	get_tree().quit()
+	pass # Replace with function body.

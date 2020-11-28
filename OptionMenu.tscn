@@ -1,17 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/buttons/g7765-0.png" type="Texture" id=1]
 [ext_resource path="res://assets/freegui/svg/paused.png" type="Texture" id=2]
 [ext_resource path="res://assets/buttons/g7825-2.png" type="Texture" id=3]
 [ext_resource path="res://assets/buttons/g6273-4.png" type="Texture" id=4]
 [ext_resource path="res://assets/buttons/g6333-9.png" type="Texture" id=5]
+[ext_resource path="res://assets/bradbunr.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/buttons/g8063-4.png" type="Texture" id=7]
+[ext_resource path="res://assets/buttons/g6571-3.png" type="Texture" id=8]
+[ext_resource path="res://OptionMenu.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+font_data = ExtResource( 6 )
 
 [node name="OptionMenu" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource( 9 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 1.68179
@@ -29,11 +35,12 @@ __meta__ = {
 }
 
 [node name="SFX" type="TextureButton" parent="TextureRect/Audio"]
-margin_left = 112.253
-margin_top = 179.962
-margin_right = 307.253
-margin_bottom = 383.962
-rect_scale = Vector2( 0.5, 0.5 )
+pause_mode = 2
+margin_left = 270.0
+margin_top = 200.0
+margin_right = 465.0
+margin_bottom = 404.0
+rect_scale = Vector2( 0.7, 0.7 )
 toggle_mode = true
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 3 )
@@ -43,11 +50,34 @@ __meta__ = {
 
 [node name="Music" type="TextureButton" parent="TextureRect/Audio"]
 anchor_right = 1.0
-margin_left = 243.529
-margin_top = 172.911
-margin_right = 398.529
-margin_bottom = 376.911
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = 270.0
+margin_top = 400.0
+margin_right = 425.0
+margin_bottom = 604.0
+rect_scale = Vector2( 0.7, 0.7 )
 toggle_mode = true
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 1 )
+
+[node name="Exit" type="TextureButton" parent="TextureRect/Audio"]
+pause_mode = 2
+margin_left = 270.0
+margin_top = 600.0
+margin_right = 465.0
+margin_bottom = 804.0
+rect_scale = Vector2( 0.7, 0.7 )
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TextureRect"]
+margin_left = 224.278
+margin_top = 7.15873
+margin_right = 575.278
+margin_bottom = 158.159
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = SubResource( 1 )
+text = "Options"
+[connection signal="pressed" from="TextureRect/Audio/Exit" to="." method="_on_Exit_pressed"]
