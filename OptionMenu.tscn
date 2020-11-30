@@ -18,6 +18,9 @@ font_data = ExtResource( 6 )
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 1.68179
@@ -49,6 +52,7 @@ __meta__ = {
 }
 
 [node name="Music" type="TextureButton" parent="TextureRect/Audio"]
+pause_mode = 2
 anchor_right = 1.0
 margin_left = 270.0
 margin_top = 400.0
@@ -80,4 +84,6 @@ margin_bottom = 158.159
 rect_scale = Vector2( 0.75, 0.75 )
 custom_fonts/font = SubResource( 1 )
 text = "Options"
+[connection signal="toggled" from="TextureRect/Audio/SFX" to="." method="_on_SFX_toggled"]
+[connection signal="toggled" from="TextureRect/Audio/Music" to="." method="_on_Music_toggled"]
 [connection signal="pressed" from="TextureRect/Audio/Exit" to="." method="_on_Exit_pressed"]

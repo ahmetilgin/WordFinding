@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://assets/freegui/png/BG.png" type="Texture" id=2]
@@ -7,10 +7,18 @@
 [ext_resource path="res://assets/topgui.png" type="Texture" id=5]
 [ext_resource path="res://assets/FreeSounds/DM-CGS-45.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/FreeSounds/DM-CGS-22.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/FreeSounds/bensound-littleidea.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/FreeSounds/Hero_little.ogg" type="AudioStream" id=8]
 [ext_resource path="res://assets/FreeSounds/success-notification_C_major.wav" type="AudioStream" id=9]
 [ext_resource path="res://LevelFinish.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/freegui/png/Window.png" type="Texture" id=11]
+[ext_resource path="res://assets/buttons/g7169-9.png" type="Texture" id=12]
+[ext_resource path="res://OptionMenu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/buttons/g8661-6.png" type="Texture" id=14]
+[ext_resource path="res://assets/buttons/g6513-4.png" type="Texture" id=15]
+[ext_resource path="res://assets/buttons/g7649-6.png" type="Texture" id=16]
+[ext_resource path="res://assets/buttons/g6157-1.png" type="Texture" id=17]
+[ext_resource path="res://Interface.gd" type="Script" id=18]
+[ext_resource path="res://assets/buttons/g8005-0.png" type="Texture" id=19]
 
 [sub_resource type="StyleBoxTexture" id=1]
 content_margin_left = 20.0
@@ -43,17 +51,13 @@ corner_radius_bottom_left = 10
 size = 100
 font_data = ExtResource( 3 )
 
-[sub_resource type="Environment" id=5]
-background_mode = 4
-ambient_light_color = Color( 0.356863, 0.160784, 0.160784, 1 )
-fog_enabled = true
-ss_reflections_enabled = true
-dof_blur_far_distance = 0.01
-glow_enabled = true
-adjustment_enabled = true
-
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="OptionCanvas" type="CanvasLayer" parent="."]
+
+[node name="OptionMenu" parent="OptionCanvas" instance=ExtResource( 13 )]
+visible = false
 
 [node name="tile" type="Sprite" parent="."]
 position = Vector2( 405.011, 304.106 )
@@ -144,10 +148,34 @@ stream = ExtResource( 8 )
 volume_db = -3.041
 autoplay = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 5 )
-
 [node name="Control" parent="." instance=ExtResource( 10 )]
+
+[node name="LevelFinish" parent="Control" index="1"]
+visible = false
+
+[node name="Interface" type="Node2D" parent="Control"]
+position = Vector2( 6.72717, 521.356 )
+z_index = 12
+script = ExtResource( 18 )
+
+[node name="ExitButton" type="TouchScreenButton" parent="Control/Interface"]
+scale = Vector2( 0.4, 0.4 )
+normal = ExtResource( 16 )
+pressed = ExtResource( 17 )
+
+[node name="SettingButton" type="TouchScreenButton" parent="Control/Interface"]
+position = Vector2( 160, 0 )
+scale = Vector2( 0.4, 0.4 )
+normal = ExtResource( 19 )
+pressed = ExtResource( 15 )
+
+[node name="LeaderBoardButton" type="TouchScreenButton" parent="Control/Interface"]
+position = Vector2( 320, 0 )
+scale = Vector2( 0.4, 0.4 )
+normal = ExtResource( 14 )
+pressed = ExtResource( 12 )
 [connection signal="timeout" from="ScoreTexture/CountTimer" to="." method="_on_CountTimer_timeout"]
+[connection signal="pressed" from="Control/Interface/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="Control/Interface/SettingButton" to="." method="_on_SettingButton_pressed"]
 
 [editable path="Control"]

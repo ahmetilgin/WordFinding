@@ -5,6 +5,8 @@ var cell_size = 48
 var divition_ratio = 1.0
 var is_all_moving = false
 var game_finish = false
+var is_play_music = true
+var is_play_sfx = true
 enum rotations{
 	up,
 	down,

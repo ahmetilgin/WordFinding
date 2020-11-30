@@ -15,7 +15,7 @@
 [ext_resource path="res://assets/buttons/g6513-4.png" type="Texture" id=13]
 [ext_resource path="res://assets/star/star1.png" type="Texture" id=14]
 [ext_resource path="res://OptionMenu.tscn" type="PackedScene" id=15]
-[ext_resource path="res://OptionMenu.gd" type="Script" id=16]
+[ext_resource path="res://assets/FreeSounds/Music_main_one.ogg" type="AudioStream" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -39,12 +39,8 @@ __meta__ = {
 [node name="OptionCanvas" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="OptionMenu" type="Control" parent="OptionCanvas" instance=ExtResource( 15 )]
-pause_mode = 2
+[node name="OptionMenu" parent="OptionCanvas" instance=ExtResource( 15 )]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 16 )
 
 [node name="Node" parent="." instance=ExtResource( 2 )]
 
@@ -114,5 +110,10 @@ position = Vector2( 320, 0 )
 scale = Vector2( 0.4, 0.4 )
 normal = ExtResource( 9 )
 pressed = ExtResource( 10 )
+
+[node name="GameMenuSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 216.13, 355.98 )
+stream = ExtResource( 16 )
+autoplay = true
 [connection signal="pressed" from="Interface/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="Interface/SettingButton" to="." method="_on_SettingButton_pressed"]

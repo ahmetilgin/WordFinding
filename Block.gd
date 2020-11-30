@@ -41,7 +41,8 @@ func move_around():
 		if !Globals.is_all_moving:
 			if look_around_result != Globals.rotations.none:	
 				_go_given_rotation(look_around_result)
-				get_parent().get_node("MoveSound").play()
+				if(Globals.is_play_sfx):
+					get_parent().get_node("MoveSound").play()
 				emit_signal("block_move")
 			else:
 				emit_signal("all_block_move",global_position)

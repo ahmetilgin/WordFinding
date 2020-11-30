@@ -20,9 +20,17 @@ func _ready():
 	$bottomgui.rect_scale.y = bottomgui_oran.x
 	$bottomgui.set_global_position(Vector2(0,OS.window_size.y - (bottomgui_size.y * bottomgui_oran.x)))
 	$topgui.set_global_position(Vector2(0,0))
+	on_pressed_music()
+	$OptionCanvas/OptionMenu/TextureRect/Audio/Music.connect("pressed",self,"on_pressed_music")
+	
 	pass # Replace with function body.
 
-
+func on_pressed_music():
+	if(Globals.is_play_music):
+		$GameMenuSound._set_playing(true)
+	else:
+		$GameMenuSound._set_playing(false)
+	pass
 
 #func _process(delta):
 #	_ready()

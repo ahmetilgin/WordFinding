@@ -97,8 +97,17 @@ func _ready():
 	$ButtonTexture.set_global_position(Vector2(0,$Camera2D.get_global_position().y + OS.window_size.y - (button_texture_size.y * button_texture_orani.x)))
 	$ButtonTexture.scale.x = button_texture_orani.x
 	$ButtonTexture.scale.y = button_texture_orani.x
-	 
+	on_pressed_music()
+	$OptionCanvas/OptionMenu/TextureRect/Audio/Music.connect("pressed",self,"on_pressed_music")
 	
+	pass # Replace with function body.
+
+func on_pressed_music():
+	if(Globals.is_play_music):
+		$GamePlaySound._set_playing(true)
+	else:
+		$GamePlaySound._set_playing(false)
+	pass
 #	$ButtonTexture.scale *= screen_size_calibration.x
 
 	#$ScoreTexture.set_scale($ScoreTexture.get_scale() * (normal_window_size.x / normal_window_size.y) * (Globals.divition_ratio))
@@ -231,7 +240,8 @@ func check_available_found_word():
 				if (result < 0):
 					result = col_word.find(reverse_word)
 				if (result > -1):
-					$FoundWordSound.play()
+					if(Globals.is_play_sfx):
+						$FoundWordSound.play()
 					for complete_word in range(1, len(word) + 1):
 						correcting_word(col_count,result + complete_word)
 						set_checked_word(word)
@@ -249,7 +259,8 @@ func check_available_found_word():
 				if (result < 0):
 					result = row_word.find(reverse_word)
 				if (result > -1):
-					$FoundWordSound.play()
+					if(Globals.is_play_sfx):
+						$FoundWordSound.play()
 					for complete_word in range(1, len(word) + 1):
 						correcting_word(result + complete_word,row_count)
 						set_checked_word(word)
@@ -346,8 +357,8 @@ func all_block_move_request(pos):
 				for shift in range(current_empty_position.x + 1,current_clicked_block.x + 1):
 					pos_with_block[Vector2(shift,current_clicked_block.y)].get_node("block_button")._go_given_rotation(Globals.rotations.left)
 					yield(get_tree().create_timer(0.01), "timeout")
-		
-		$AllMoveSound.play()
+		if(Globals.is_play_sfx):
+			$AllMoveSound.play()
 		check_available_found_word()
 		Globals.is_all_moving = false
 		update_pos_with_block()
@@ -364,7 +375,8 @@ func on_increase_score():
 #	pass
 func level_finished():
 	$GamePlaySound.stop()
-	$GameFinishSound.play()
+	if(Globals.is_play_sfx):
+		$GameFinishSound.play()
 	$Control/LevelFinish.popup()
 	$Control/ColorRect.set_visible(true)
 	$Control.sum_point(score,time)
@@ -386,4 +398,15 @@ func _on_CountTimer_timeout():
 #		$Control/ColorRect.set_visible(true)
 #		$Control.set_total_star(score)
 #		Globals.game_finish = true
+	pass # Replace with function body.
+
+
+func _on_ExitButton_pressed():
+	get_tree().quit()
+	pass # Replace with function body.
+
+
+func _on_SettingButton_pressed():
+	get_tree().paused = not get_tree().paused
+	$OptionCanvas/OptionMenu.visible = true
 	pass # Replace with function body.

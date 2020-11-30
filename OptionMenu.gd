@@ -13,14 +13,37 @@ func _ready():
 	$TextureRect.rect_scale.x = textureoption_oran.x
 	$TextureRect.rect_scale.y = textureoption_oran.x
 	$TextureRect.set_global_position(Vector2(0,(OS.window_size.y / 2) - (textureoption_size.y / 4)))
- 
-
+	if(Globals.is_play_sfx):
+		$TextureRect/Audio/SFX.set_pressed(false)
+	else:
+		$TextureRect/Audio/SFX.set_pressed(true)
+	if(Globals.is_play_music):
+		$TextureRect/Audio/Music.set_pressed(false)
+	else:
+		$TextureRect/Audio/Music.set_pressed(true)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
+func _process(delta):
+	print(Globals.is_play_music)
 #	pass
 
 
 func _on_Exit_pressed():
 	get_tree().paused = not get_tree().paused
 	$".".visible = false
+	pass # Replace with function body.
+
+
+func _on_Music_toggled(button_pressed):
+	if(button_pressed):
+		Globals.is_play_music = false
+	else:
+		Globals.is_play_music = true
+	pass # Replace with function body.
+
+
+func _on_SFX_toggled(button_pressed):
+	if(button_pressed):
+		Globals.is_play_sfx = false
+	else:
+		Globals.is_play_sfx = true
 	pass # Replace with function body.
