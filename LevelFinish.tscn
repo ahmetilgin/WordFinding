@@ -49,6 +49,7 @@ rect_pivot_offset = Vector2( -0.0145483, -0.0359873 )
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect"]
+visible = false
 mouse_filter = 2
 color = Color( 0.121569, 0.117647, 0.117647, 0.603922 )
 __meta__ = {

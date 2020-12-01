@@ -402,7 +402,7 @@ func _on_CountTimer_timeout():
 
 
 func _on_ExitButton_pressed():
-	get_tree().quit()
+	get_parent().get_tree().quit()
 	pass # Replace with function body.
 
 

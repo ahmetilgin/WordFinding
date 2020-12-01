@@ -15,24 +15,35 @@ size = 128
 font_data = ExtResource( 6 )
 
 [node name="OptionMenu" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+rect_pivot_offset = Vector2( -593.337, -557.244 )
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 1.68179
-margin_right = 41.6818
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 40.0
 margin_bottom = 40.0
+rect_pivot_offset = Vector2( -511.57, -644.709 )
+color = Color( 0, 0, 0, 0.701961 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -349.043
+margin_top = -531.744
+margin_right = 350.957
+margin_bottom = 449.256
+rect_pivot_offset = Vector2( -0.39325, 1.31805 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Audio" type="Control" parent="TextureRect"]
 margin_left = 11.8111
 margin_top = 70.6393
 margin_right = 51.8111
 margin_bottom = 110.639
+rect_pivot_offset = Vector2( 333.906, 465.723 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
