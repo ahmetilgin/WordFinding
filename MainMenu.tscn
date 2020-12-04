@@ -112,6 +112,7 @@ normal = ExtResource( 9 )
 pressed = ExtResource( 10 )
 
 [node name="GameMenuSound" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
 position = Vector2( 216.13, 355.98 )
 stream = ExtResource( 16 )
 autoplay = true

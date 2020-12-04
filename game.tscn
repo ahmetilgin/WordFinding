@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://assets/freegui/png/BG.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/buttons/g6157-1.png" type="Texture" id=17]
 [ext_resource path="res://Interface.gd" type="Script" id=18]
 [ext_resource path="res://assets/buttons/g8005-0.png" type="Texture" id=19]
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=20]
 
 [sub_resource type="StyleBoxTexture" id=1]
 content_margin_left = 20.0
@@ -143,6 +144,7 @@ position = Vector2( 240.207, 424.291 )
 stream = ExtResource( 9 )
 
 [node name="GamePlaySound" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
 position = Vector2( 242.452, 413.066 )
 stream = ExtResource( 8 )
 volume_db = -3.041
@@ -174,6 +176,10 @@ position = Vector2( 320, 0 )
 scale = Vector2( 0.4, 0.4 )
 normal = ExtResource( 14 )
 pressed = ExtResource( 12 )
+
+[node name="AdMob" type="Node" parent="."]
+script = ExtResource( 20 )
+interstitial_id = "ca-app-pub-3940256099942544/1033173712"
 [connection signal="timeout" from="ScoreTexture/CountTimer" to="." method="_on_CountTimer_timeout"]
 [connection signal="pressed" from="Control/Interface/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="Control/Interface/SettingButton" to="." method="_on_SettingButton_pressed"]

@@ -7,6 +7,7 @@ var is_all_moving = false
 var game_finish = false
 var is_play_music = true
 var is_play_sfx = true
+var advertise_wait_count = 0
 enum rotations{
 	up,
 	down,

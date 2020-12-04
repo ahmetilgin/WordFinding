@@ -82,6 +82,7 @@ func reset_words():
 	pass
 
 func _ready():
+
 	get_window_size()
 	var score_texture_size = $ScoreTexture.get_texture().get_size()
 	var score_texture_orani = OS.window_size / score_texture_size
@@ -384,6 +385,7 @@ func level_finished():
 	$Control.set_finish_time(time)
 	Globals.game_finish = true
 	$ScoreTexture/CountTimer.stop()
+
 	
 func _on_CountTimer_timeout():
 	if( time > 0):

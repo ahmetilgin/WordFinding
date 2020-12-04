@@ -6,9 +6,10 @@ extends CanvasLayer
 # var b = "text"
 var money_count = 0
 var sum_count = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
- 
+	admob_load_interstitial()
 	var popup_size = $LevelFinish/TextureRect.get_texture().get_size()  
  
 	var popup_oran = OS.window_size / popup_size
@@ -19,7 +20,8 @@ func _ready():
 	$LevelFinish.set_global_position(Vector2(OS.window_size.x /2  , OS.window_size.y /2  ))
 	pass # Replace with function body.
 
-
+func admob_load_interstitial():
+	get_parent().get_node("AdMob").load_interstitial()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -36,11 +38,13 @@ func sum_point(time, star):
 	$MoneyCount.start()
 	
 func _on_Restart_pressed():
+	admob_show_interstitial()
 	get_tree().reload_current_scene()
 	pass # Replace with function body.
 
 
 func _on_LevelSelect_pressed():
+	admob_show_interstitial()
 	$LevelFinish.hide()
 	$Node.set_visible(true)
 	pass # Replace with function body.
@@ -91,10 +95,13 @@ func save_and_increase_current_money():
 	save_game.store_line(to_json(money_json))
 	save_game.close()
 		
-
-
-
-
 func _on_MainMenu_pressed():
+	admob_show_interstitial()
 	get_tree().change_scene("res://MainMenu.tscn")
 	pass # Replace with function body.
+	
+func admob_show_interstitial():
+	Globals.advertise_wait_count += 1
+	if Globals.advertise_wait_count == int(rand_range(3, 6)):
+		get_parent().get_node("AdMob").show_interstitial()
+		Globals.advertise_wait_count = 0
