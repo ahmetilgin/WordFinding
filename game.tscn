@@ -179,7 +179,8 @@ pressed = ExtResource( 12 )
 
 [node name="AdMob" type="Node" parent="."]
 script = ExtResource( 20 )
-interstitial_id = "ca-app-pub-3940256099942544/1033173712"
+is_real = true
+interstitial_id = "ca-app-pub-4102969944873819/5624802550"
 [connection signal="timeout" from="ScoreTexture/CountTimer" to="." method="_on_CountTimer_timeout"]
 [connection signal="pressed" from="Control/Interface/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="Control/Interface/SettingButton" to="." method="_on_SettingButton_pressed"]
