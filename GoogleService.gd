@@ -4,11 +4,11 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
-
+var play_games_services
+const LEADERBOARD_ID = "CgkIp_ar1KUTEAIQAA"
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var play_games_services
+
 # Check if plugin was added to the project
 	if Engine.has_singleton("GodotPlayGamesServices"):
 		play_games_services = Engine.get_singleton("GodotPlayGamesServices")
@@ -45,8 +45,20 @@ func _ready():
 		play_games_services.connect("_on_player_stats_loaded", self, "_on_player_stats_loaded")  # json_response: String
 		play_games_services.connect("_on_player_stats_loading_failed", self, "_on_player_stats_loading_failed")
 		play_games_services.signIn()
-	pass # Replace with function body.
+		var score = 1234
+		play_games_services.submitLeaderBoardScore("LEADERBOARD_ID", score)
 
+	pass # Replace with function body.
+func show_leaderboard():
+	play_games_services.showLeaderBoard(LEADERBOARD_ID)
+
+
+# Callbacks:
+func _on_leaderboard_score_submitted(leaderboard_id: String):
+	pass
+
+func _on_leaderboard_score_submitting_failed(leaderboard_id: String):
+	pass
 func _on_sign_in_success(account_id: String) -> void:
 	pass
   

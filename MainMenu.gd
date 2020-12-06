@@ -48,3 +48,8 @@ func _on_SettingButton_pressed():
 func _on_ExitButton_pressed():
 	get_parent().get_tree().quit()
 	pass # Replace with function body.
+
+
+func _on_LeaderBoardButton_pressed():
+	GoogleService.show_leaderboard()
+	pass # Replace with function body.

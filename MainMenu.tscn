@@ -118,3 +118,4 @@ stream = ExtResource( 16 )
 autoplay = true
 [connection signal="pressed" from="Interface/ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="Interface/SettingButton" to="." method="_on_SettingButton_pressed"]
+[connection signal="pressed" from="Interface/LeaderBoardButton" to="." method="_on_LeaderBoardButton_pressed"]
