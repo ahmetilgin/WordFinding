@@ -28,6 +28,7 @@ config/icon="res://assets/GameIcon3.png"
 [autoload]
 
 Globals="*res://globals.gd"
+GoogleService="*res://GoogleService.gd"
 
 [display]
 
