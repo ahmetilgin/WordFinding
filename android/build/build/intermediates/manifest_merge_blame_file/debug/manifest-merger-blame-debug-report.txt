@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="org.godotengine.wordfinding"
+3    package="com.godot.game"
 4    android:installLocation="auto"
 5    android:versionCode="1"
 6    android:versionName="1.0" >
@@ -217,7 +217,7 @@
 131-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\cetes\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:35:9-39:39
 132            android:name="com.google.android.gms.ads.MobileAdsInitProvider"
 132-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\cetes\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:36:13-76
-133            android:authorities="org.godotengine.wordfinding.mobileadsinitprovider"
+133            android:authorities="com.godot.game.mobileadsinitprovider"
 133-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\cetes\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:37:13-73
 134            android:exported="false"
 134-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\cetes\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:38:13-37
