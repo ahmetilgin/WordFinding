@@ -22,8 +22,8 @@ _global_script_class_icons={
 
 config/name="WordFinding"
 run/main_scene="res://MainMenu.tscn"
-boot_splash/image="res://assets/GameIcon.png"
-config/icon="res://assets/GameIcon3.png"
+boot_splash/image="res://iconn.png"
+config/icon="res://iconn.png"
 
 [autoload]
 
