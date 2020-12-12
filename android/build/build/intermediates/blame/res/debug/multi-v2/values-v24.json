@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\cetes\\Documents\\GitHub\\WordFinding\\wordfinding\\android\\build\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "C:\\Users\\ahmetilgin\\Documents\\GitHub\\WordFinding\\android\\build\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\cetes\\.gradle\\caches\\transforms-2\\files-2.1\\1d849761628829d2295b320ffc5152e0\\media-1.0.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\ahmetilgin\\.gradle\\caches\\transforms-2\\files-2.1\\1d849761628829d2295b320ffc5152e0\\media-1.0.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
