@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://assets/freegui/png/BG.png" type="Texture" id=2]
@@ -11,14 +11,8 @@
 [ext_resource path="res://assets/FreeSounds/success-notification_C_major.wav" type="AudioStream" id=9]
 [ext_resource path="res://LevelFinish.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/freegui/png/Window.png" type="Texture" id=11]
-[ext_resource path="res://assets/buttons/g7169-9.png" type="Texture" id=12]
+[ext_resource path="res://Interface.tscn" type="PackedScene" id=12]
 [ext_resource path="res://OptionMenu.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/buttons/g8661-6.png" type="Texture" id=14]
-[ext_resource path="res://assets/buttons/g6513-4.png" type="Texture" id=15]
-[ext_resource path="res://assets/buttons/g7649-6.png" type="Texture" id=16]
-[ext_resource path="res://assets/buttons/g6157-1.png" type="Texture" id=17]
-[ext_resource path="res://Interface.gd" type="Script" id=18]
-[ext_resource path="res://assets/buttons/g8005-0.png" type="Texture" id=19]
 [ext_resource path="res://admob-lib/admob.gd" type="Script" id=20]
 
 [sub_resource type="StyleBoxTexture" id=1]
@@ -130,6 +124,10 @@ current = true
 texture = ExtResource( 4 )
 centered = false
 
+[node name="Interface" parent="ButtonTexture" instance=ExtResource( 12 )]
+position = Vector2( 250, 50 )
+scale = Vector2( 2.2, 2.2 )
+
 [node name="FoundWordSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 241.632, 419.08 )
 stream = ExtResource( 6 )
@@ -150,39 +148,15 @@ stream = ExtResource( 8 )
 volume_db = -3.041
 autoplay = true
 
-[node name="Control" parent="." instance=ExtResource( 10 )]
-
-[node name="LevelFinish" parent="Control" index="1"]
-visible = false
-
-[node name="Interface" type="Node2D" parent="Control"]
-position = Vector2( 6.72717, 521.356 )
-z_index = 12
-script = ExtResource( 18 )
-
-[node name="ExitButton" type="TouchScreenButton" parent="Control/Interface"]
-scale = Vector2( 0.4, 0.4 )
-normal = ExtResource( 16 )
-pressed = ExtResource( 17 )
-
-[node name="SettingButton" type="TouchScreenButton" parent="Control/Interface"]
-position = Vector2( 160, 0 )
-scale = Vector2( 0.4, 0.4 )
-normal = ExtResource( 19 )
-pressed = ExtResource( 15 )
-
-[node name="LeaderBoardButton" type="TouchScreenButton" parent="Control/Interface"]
-position = Vector2( 320, 0 )
-scale = Vector2( 0.4, 0.4 )
-normal = ExtResource( 14 )
-pressed = ExtResource( 12 )
-
 [node name="AdMob" type="Node" parent="."]
 script = ExtResource( 20 )
 is_real = true
 interstitial_id = "ca-app-pub-4102969944873819/5624802550"
+
+[node name="Control" parent="." instance=ExtResource( 10 )]
+
+[node name="LevelFinish" parent="Control" index="1"]
+visible = false
 [connection signal="timeout" from="ScoreTexture/CountTimer" to="." method="_on_CountTimer_timeout"]
-[connection signal="pressed" from="Control/Interface/ExitButton" to="." method="_on_ExitButton_pressed"]
-[connection signal="pressed" from="Control/Interface/SettingButton" to="." method="_on_SettingButton_pressed"]
 
 [editable path="Control"]

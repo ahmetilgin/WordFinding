@@ -45,8 +45,6 @@ func _ready():
 		play_games_services.connect("_on_player_stats_loaded", self, "_on_player_stats_loaded")  # json_response: String
 		play_games_services.connect("_on_player_stats_loading_failed", self, "_on_player_stats_loading_failed")
 		play_games_services.signIn()
-		var score = 1234
-		play_games_services.submitLeaderBoardScore("LEADERBOARD_ID", score)
 
 	pass # Replace with function body.
 func show_leaderboard():
@@ -59,11 +57,16 @@ func _on_leaderboard_score_submitted(leaderboard_id: String):
 
 func _on_leaderboard_score_submitting_failed(leaderboard_id: String):
 	pass
+	
 func _on_sign_in_success(account_id: String) -> void:
 	pass
   
 func _on_sign_in_failed(error_code: int) -> void:
 	pass
+	
+func submit_score(score):
+	if(play_games_services != null):
+		play_games_services.submitLeaderBoardScore(LEADERBOARD_ID, score)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

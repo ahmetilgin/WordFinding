@@ -94,6 +94,8 @@ func save_and_increase_current_money():
 	}
 	save_game.store_line(to_json(money_json))
 	save_game.close()
+	GoogleService.submit_score(saved_money)
+	
 		
 func _on_MainMenu_pressed():
 	admob_show_interstitial()

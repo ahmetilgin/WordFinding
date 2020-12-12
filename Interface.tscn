@@ -28,3 +28,6 @@ position = Vector2( 320, 0 )
 scale = Vector2( 0.4, 0.4 )
 normal = ExtResource( 2 )
 pressed = ExtResource( 1 )
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="SettingButton" to="." method="_on_SettingButton_pressed"]
+[connection signal="pressed" from="LeaderBoardButton" to="." method="_on_LeaderBoardButton_pressed"]

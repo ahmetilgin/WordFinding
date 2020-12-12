@@ -34,7 +34,7 @@ GoogleService="*res://GoogleService.gd"
 [display]
 
 window/size/width=400
-window/size/height=800
+window/size/height=711
 window/handheld/orientation="portrait"
 
 [input_devices]

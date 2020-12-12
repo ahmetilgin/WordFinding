@@ -13,6 +13,7 @@ var time = 0
 var founded_words = []
 var total_words 
 var border_width = Vector2(5, 5)
+
 signal correct_word
 func fill_frames(position):
 	var frame = frame_scene.instance()
@@ -412,3 +413,5 @@ func _on_SettingButton_pressed():
 	get_tree().paused = not get_tree().paused
 	$OptionCanvas/OptionMenu.visible = true
 	pass # Replace with function body.
+
+ 
