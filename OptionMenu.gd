@@ -18,6 +18,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	$ColorRect.rect_size = OS.window_size
 	$ColorRect.set_global_position(Vector2(0, 0 ))
 	var textureoption_size = $TextureRect.get_texture().get_size()  

@@ -1,0 +1,106 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://assets/buttons/g6633-4.png" type="Texture" id=1]
+[ext_resource path="res://assets/tutorial/4.PNG" type="Texture" id=2]
+[ext_resource path="res://assets/buttons/g8125-1.png" type="Texture" id=3]
+[ext_resource path="res://assets/tutorial/6.PNG" type="Texture" id=4]
+[ext_resource path="res://assets/tutorial/3.PNG" type="Texture" id=5]
+[ext_resource path="res://assets/tutorial/7-1.PNG" type="Texture" id=6]
+[ext_resource path="res://assets/freegui/png/Window.png" type="Texture" id=7]
+[ext_resource path="res://assets/tutorial/8-1.PNG" type="Texture" id=8]
+[ext_resource path="res://assets/tutorial/5-1.PNG" type="Texture" id=9]
+[ext_resource path="res://assets/tutorial/9-1.PNG" type="Texture" id=10]
+[ext_resource path="res://assets/tutorial/5.PNG" type="Texture" id=11]
+[ext_resource path="res://assets/tutorial/8.PNG" type="Texture" id=12]
+[ext_resource path="res://assets/tutorial/3-1.PNG" type="Texture" id=14]
+[ext_resource path="res://assets/tutorial/7.PNG" type="Texture" id=15]
+[ext_resource path="res://assets/tutorial/9.PNG" type="Texture" id=16]
+[ext_resource path="res://assets/buttons/g1597-0.png" type="Texture" id=17]
+[ext_resource path="res://assets/buttons/g2599-8.png" type="Texture" id=18]
+[ext_resource path="res://assets/buttons/g1537-1.png" type="Texture" id=19]
+[ext_resource path="res://assets/buttons/g2659-8.png" type="Texture" id=20]
+[ext_resource path="res://assets/buttons/g9617-9.png" type="Texture" id=21]
+[ext_resource path="res://slidetutorial.gd" type="Script" id=22]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 1158.52, 1156.04, 447.384, 611.159 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 14 ), ExtResource( 2 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 15 ), ExtResource( 6 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 16 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "slide",
+"speed": 5.0
+} ]
+
+[node name="tutorial" type="Control"]
+pause_mode = 2
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="."]
+margin_left = -345.0
+margin_top = -252.0
+margin_right = 768.0
+margin_bottom = 918.0
+color = Color( 0, 0, 0, 0.792157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FramePanel" type="Sprite" parent="."]
+position = Vector2( -33.5323, 20.7083 )
+texture = SubResource( 1 )
+offset = Vector2( 225.214, 304.804 )
+
+[node name="SlideShow" type="AnimatedSprite" parent="FramePanel"]
+position = Vector2( 220, 260 )
+scale = Vector2( 0.9, 0.9 )
+frames = SubResource( 2 )
+animation = "slide"
+
+[node name="back" type="TextureButton" parent="FramePanel"]
+margin_left = 40.0
+margin_top = 594.822
+margin_right = 375.581
+margin_bottom = 798.822
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="okey" type="TextureButton" parent="FramePanel"]
+margin_left = 185.0
+margin_top = 594.822
+margin_right = 380.0
+margin_bottom = 798.822
+rect_scale = Vector2( 0.5, 0.5 )
+disabled = true
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 3 )
+texture_disabled = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="forward" type="TextureButton" parent="FramePanel"]
+margin_left = 330.0
+margin_top = 594.822
+margin_right = 527.584
+margin_bottom = 798.822
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 19 )
+texture_pressed = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="animation_finished" from="FramePanel/SlideShow" to="." method="_on_SlideShow_animation_finished"]
+[connection signal="pressed" from="FramePanel/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="FramePanel/okey" to="." method="_on_okey_pressed"]
+[connection signal="pressed" from="FramePanel/forward" to="." method="_on_forward_pressed"]

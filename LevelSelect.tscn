@@ -28,7 +28,6 @@ pressed = ExtResource( 1 )
 [node name="4x4" type="Sprite" parent="4x4"]
 position = Vector2( 235, 100 )
 scale = Vector2( 1.8, 1.8 )
-z_index = 1
 texture = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": ""
