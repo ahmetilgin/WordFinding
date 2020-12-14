@@ -8,5 +8,6 @@ android/*
 .mono/
 data_*/
 *.import
-/*
+android/*
+ 
 
