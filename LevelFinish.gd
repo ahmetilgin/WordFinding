@@ -66,9 +66,9 @@ func _on_MoneyCount_timeout():
 	money_count += 1
 	pass # Replace with function body.
 
-func get_saved_money():
+func get_saved_data():
 	var save_money = File.new()
-	var saved_money = 0
+	var saved_money = {}
 	if not save_money.file_exists("user://save_money.save"):
 		return saved_money# Error! We don't have a save to load.
 	
@@ -79,22 +79,42 @@ func get_saved_money():
 	if(node_data == null):
 		save_money.close();
 		return saved_money
-	saved_money = int(node_data["money"])
 	save_money.close();
-	return saved_money;
+	return node_data;
 	pass
 
 func save_and_increase_current_money():
+	var date = OS.get_date()
+	var time_return = String(date.year) +":"+String(date.month)+":"+String(date.day)
 	var save_game = File.new()
-	var saved_money = get_saved_money()	
+	var saved_data = get_saved_data()
+	var daily_money = 0
+	
+	if(saved_data.has("money")):
+		 daily_money = int(saved_data["money"])
+	var totalMoney = 0
+	if(saved_data.has("totalMoney")):
+		totalMoney = int(saved_data["totalMoney"])
+	var saved_date = ""
+	if(saved_data.has("date")):
+		saved_date = saved_data["date"]
+	else:
+		saved_date = time_return
 	save_game.open("user://save_money.save", File.WRITE)
-	saved_money += money_count
+	
+	if time_return == saved_date:
+		daily_money += money_count
+	else:
+		daily_money = money_count
+		
 	var money_json = {
-		"money" : saved_money
+		"money" : daily_money,
+		"date" : time_return,
+		"totalMoney": totalMoney + money_count
 	}
 	save_game.store_line(to_json(money_json))
 	save_game.close()
-	GoogleService.submit_score(saved_money)
+	GoogleService.submit_score(daily_money)
 	
 		
 func _on_MainMenu_pressed():

@@ -8,6 +8,7 @@ extends RichTextLabel
 
 func load_money():
 	var save_money = File.new()
+
 	if not save_money.file_exists("user://save_money.save"):
 		return # Error! We don't have a save to load.
 	
@@ -20,7 +21,10 @@ func load_money():
 			save_money.close();
 			return 
 		
-		current_money = int(node_data["money"])
+		if node_data.has("totalMoney"):
+			current_money = int(node_data["totalMoney"])
+		else:
+			current_money = 0
 		
 	set_text(str(current_money))
 	save_money.close();
