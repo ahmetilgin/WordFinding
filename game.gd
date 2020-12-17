@@ -105,10 +105,7 @@ func _ready():
 	pass # Replace with function body.
 
 func on_pressed_music():
-	if(Globals.is_play_music):
-		$GamePlaySound._set_playing(false)
-	else:
-		$GamePlaySound._set_playing(true)
+	$GamePlaySound._set_playing(Globals.is_play_music)
 	pass
 #	$ButtonTexture.scale *= screen_size_calibration.x
 

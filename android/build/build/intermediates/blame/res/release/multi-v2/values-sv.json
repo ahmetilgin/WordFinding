@@ -1,27 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\ahmetilgin\\Documents\\GitHub\\WordFinding\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sv\\values-sv.xml",
+            "outputFile": "C:\\Users\\cetes\\Documents\\GitHub\\WordFinding\\wordfinding\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sv\\values-sv.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ahmetilgin\\.gradle\\caches\\transforms-2\\files-2.1\\2f29423de5771cd0c2f475b364e10860\\godot-lib.release\\res\\values-sv\\values-sv.xml",
+                    "source": "C:\\Users\\cetes\\.gradle\\caches\\transforms-2\\files-2.1\\2b0094f6cfc4a85905731f258cd5d0de\\jetified-play-services-basement-17.1.1\\res\\values-sv\\values.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "75",
-                        "endOffsets": "126"
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "206",
+                        "endOffsets": "453"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "10",
                         "startColumns": "4",
-                        "startOffsets": "2800",
-                        "endColumns": "75",
-                        "endOffsets": "2871"
+                        "startOffsets": "1257",
+                        "endColumns": "206",
+                        "endOffsets": "1459"
                     }
                 },
                 {
-                    "source": "C:\\Users\\ahmetilgin\\.gradle\\caches\\transforms-2\\files-2.1\\96992ba8e386c900bb8f57d2baa98bcd\\play-services-base-17.1.0\\res\\values-sv\\values.xml",
+                    "source": "C:\\Users\\cetes\\.gradle\\caches\\transforms-2\\files-2.1\\96992ba8e386c900bb8f57d2baa98bcd\\play-services-base-17.1.0\\res\\values-sv\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ahmetilgin\\.gradle\\caches\\transforms-2\\files-2.1\\41ef9cbd0046b5eb8a65619f7baf5ab6\\jetified-play-services-ads-19.3.0\\res\\values-sv\\values.xml",
+                    "source": "C:\\Users\\cetes\\.gradle\\caches\\transforms-2\\files-2.1\\0452d05e4b9a73169b5ac3ef58cd4bfe\\jetified-play-services-ads-19.3.0\\res\\values-sv\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10",
                         "startColumns": "0,0,0,0,0,0,0",
@@ -55,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ahmetilgin\\.gradle\\caches\\transforms-2\\files-2.1\\947833f03979c6d84fcd9a8feba7ce42\\core-1.0.0\\res\\values-sv\\values-sv.xml",
+                    "source": "C:\\Users\\cetes\\.gradle\\caches\\transforms-2\\files-2.1\\947833f03979c6d84fcd9a8feba7ce42\\core-1.0.0\\res\\values-sv\\values-sv.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -72,20 +72,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ahmetilgin\\.gradle\\caches\\transforms-2\\files-2.1\\eafe9b403d5f18f764cc7e9adac2c0d4\\jetified-play-services-basement-17.1.1\\res\\values-sv\\values.xml",
+                    "source": "C:\\Users\\cetes\\.gradle\\caches\\transforms-2\\files-2.1\\2f29423de5771cd0c2f475b364e10860\\godot-lib.release\\res\\values-sv\\values-sv.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "206",
-                        "endOffsets": "453"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "75",
+                        "endOffsets": "126"
                     },
                     "to": {
-                        "startLines": "10",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "1257",
-                        "endColumns": "206",
-                        "endOffsets": "1459"
+                        "startOffsets": "2800",
+                        "endColumns": "75",
+                        "endOffsets": "2871"
                     }
                 }
             ]

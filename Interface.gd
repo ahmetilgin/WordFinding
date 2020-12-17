@@ -22,8 +22,9 @@ func _on_ExitButton_pressed():
 
 
 func _on_SettingButton_pressed():
-	get_tree().paused = not get_tree().paused
-	get_parent().get_parent().get_node("OptionCanvas/OptionMenu").visible = true
+	if !Globals.game_finish:
+		get_tree().paused = not get_tree().paused
+		get_parent().get_parent().get_node("OptionCanvas/OptionMenu").visible = true
 	pass # Replace with function body.
 
 

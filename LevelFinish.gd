@@ -41,12 +41,14 @@ func sum_point(time, star):
 	
 func _on_Restart_pressed():
 	admob_show_interstitial()
+	Globals.game_finish = false
 	get_tree().reload_current_scene()
 	pass # Replace with function body.
 
 
 func _on_LevelSelect_pressed():
 	admob_show_interstitial()
+	Globals.game_finish = false
 	$LevelFinish.hide()
 	$Node.set_visible(true)
 	pass # Replace with function body.
@@ -124,6 +126,7 @@ func _on_game_saved_fail():
 		
 func _on_MainMenu_pressed():
 	admob_show_interstitial()
+	Globals.game_finish = false
 	get_tree().change_scene("res://MainMenu.tscn")
 	pass # Replace with function body.
 	

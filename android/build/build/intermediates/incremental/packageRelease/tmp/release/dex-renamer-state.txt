@@ -1,4 +1,4 @@
-#Sat Dec 12 23:19:43 TRT 2020
-base.0=C\:\\Users\\ahmetilgin\\Documents\\GitHub\\WordFinding\\android\\build\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes.dex
+#Thu Dec 17 22:35:58 TRT 2020
+base.0=C\:\\Users\\cetes\\Documents\\GitHub\\WordFinding\\wordfinding\\android\\build\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
