@@ -8,6 +8,7 @@ var game_finish = false
 var is_play_music = true
 var is_play_sfx = true
 var advertise_wait_count = 0
+var is_tutorialed = true
 enum rotations{
 	up,
 	down,
@@ -1033,3 +1034,33 @@ var words = [
 	"YOUR",
 	"YOURSELF"
 ]
+func save_data():
+	var save_game_data = File.new()
+	save_game_data.open("user://save_game_data.save", File.WRITE)
+	var data = {
+		"is_tutorialed": is_tutorialed,
+		"is_play_music": is_play_music,
+		"is_play_sfx": is_play_sfx
+	}
+	save_game_data.store_line(to_json(data))
+	save_game_data.close();
+	pass
+	
+func load_game_data():
+	var save_game_data = File.new()
+
+	if not save_game_data.file_exists("user://save_game_data.save"):
+		return 0# Error! We don't have a save to load.
+		
+	save_game_data.open("user://save_game_data.save", File.READ)
+	
+	var node_data = parse_json(save_game_data.get_as_text())
+	if(node_data == null):
+		save_game_data.close();
+		return 0
+		
+	is_tutorialed = node_data["is_tutorialed"]
+	is_play_music = node_data["is_play_music"]
+	is_play_sfx = node_data["is_play_sfx"]
+	
+	save_game_data.close();

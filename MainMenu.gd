@@ -8,7 +8,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	if(Globals.is_tutorialed):
+		get_node("tutorial")._on_okey_pressed()
+
 	var topgui_size = $topgui.get_texture().get_size()  
 	var bottomgui_size = $bottomgui.get_texture().get_size()  
 	var topgui_oran = OS.window_size / topgui_size
@@ -26,11 +28,8 @@ func _ready():
 	pass # Replace with function body.
 
 func on_pressed_music():
-	if(Globals.is_play_music):
-		$GameMenuSound._set_playing(true)
-	else:
-		$GameMenuSound._set_playing(false)
-	pass
+	$GameMenuSound._set_playing(Globals.is_play_music)
+
 
 #func _process(delta):
 #	_ready()

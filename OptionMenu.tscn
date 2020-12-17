@@ -15,7 +15,6 @@ size = 128
 font_data = ExtResource( 6 )
 
 [node name="OptionMenu" type="Control"]
-pause_mode = 2
 rect_pivot_offset = Vector2( -593.337, -557.244 )
 script = ExtResource( 9 )
 __meta__ = {

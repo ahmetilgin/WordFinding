@@ -106,9 +106,9 @@ func _ready():
 
 func on_pressed_music():
 	if(Globals.is_play_music):
-		$GamePlaySound._set_playing(true)
-	else:
 		$GamePlaySound._set_playing(false)
+	else:
+		$GamePlaySound._set_playing(true)
 	pass
 #	$ButtonTexture.scale *= screen_size_calibration.x
 
@@ -263,6 +263,7 @@ func check_available_found_word():
 				if (result > -1):
 					if(Globals.is_play_sfx):
 						$FoundWordSound.play()
+					
 					for complete_word in range(1, len(word) + 1):
 						correcting_word(result + complete_word,row_count)
 						set_checked_word(word)

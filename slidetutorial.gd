@@ -39,6 +39,8 @@ func _on_forward_pressed():
 func _on_okey_pressed():
 	get_tree().paused = not get_tree().paused
 	self.hide()
+	Globals.is_tutorialed = true
+	Globals.save_data()
 	pass # Replace with function body.
 
 

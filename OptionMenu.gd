@@ -18,7 +18,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	Globals.load_game_data()
 	$ColorRect.rect_size = OS.window_size
 	$ColorRect.set_global_position(Vector2(0, 0 ))
 	var textureoption_size = $TextureRect.get_texture().get_size()  
@@ -26,14 +26,12 @@ func _ready():
 	$TextureRect.rect_scale.x = textureoption_oran.x
 	$TextureRect.rect_scale.y = textureoption_oran.x
 	$TextureRect.set_global_position(Vector2(0  , OS.window_size.y /6  ))
-	if(Globals.is_play_sfx):
-		$TextureRect/Audio/SFX.set_pressed(false)
-	else:
+	if(!Globals.is_play_sfx):
 		$TextureRect/Audio/SFX.set_pressed(true)
-	if(Globals.is_play_music):
-		$TextureRect/Audio/Music.set_pressed(false)
-	else:
+		
+	if(!Globals.is_play_music):
 		$TextureRect/Audio/Music.set_pressed(true)
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 	 
@@ -51,6 +49,8 @@ func _on_Music_toggled(button_pressed):
 		Globals.is_play_music = false
 	else:
 		Globals.is_play_music = true
+	
+	Globals.save_data()
 	pass # Replace with function body.
 
 
@@ -59,4 +59,7 @@ func _on_SFX_toggled(button_pressed):
 		Globals.is_play_sfx = false
 	else:
 		Globals.is_play_sfx = true
+	Globals.save_data()
 	pass # Replace with function body.
+
+
