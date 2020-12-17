@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/mainscreetopgui.png" type="Texture" id=1]
 [ext_resource path="res://LevelSelect.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/bottomgui.png" type="Texture" id=4]
 [ext_resource path="res://assets/bradbunr.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Interface.tscn" type="PackedScene" id=6]
-[ext_resource path="res://slidetutorial.tscn" type="PackedScene" id=7]
 [ext_resource path="res://CurrentMoney.gd" type="Script" id=12]
 [ext_resource path="res://assets/score.png" type="Texture" id=14]
 [ext_resource path="res://OptionMenu.tscn" type="PackedScene" id=15]
@@ -72,7 +71,7 @@ margin_bottom = 186.0
 rect_scale = Vector2( 0.982492, 1 )
 rect_clip_content = false
 custom_fonts/normal_font = SubResource( 1 )
-text = "55555"
+text = "0"
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -98,5 +97,3 @@ pause_mode = 2
 position = Vector2( 216.13, 355.98 )
 stream = ExtResource( 16 )
 autoplay = true
-
-[node name="tutorial" parent="." instance=ExtResource( 7 )]

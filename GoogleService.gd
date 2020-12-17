@@ -5,7 +5,7 @@ extends Node
 # var a = 2
 # var b = "text"
 var play_games_services
-const LEADERBOARD_ID = "CgkIp_ar1KUTEAIQAA"
+const LEADERBOARD_ID = "CgkIp_ar1KUTEAIQAw"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
