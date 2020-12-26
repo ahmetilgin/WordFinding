@@ -35,11 +35,7 @@ func _ready():
 		play_games_services.connect("_on_achievement_info_loaded", self, "_on_achievement_info_loaded") # achievements_json : String
 		play_games_services.connect("_on_achievement_info_load_failed", self, "_on_achievement_info_load_failed")
 		play_games_services.connect("_on_leaderboard_score_submitted", self, "_on_leaderboard_score_submitted") # leaderboard_id: String
-		play_games_services.connect("_on_leaderboard_score_submitting_failed", self, "_on_leaderboard_score_submitting_failed") # leaderboard_id: String
-		play_games_services.connect("_on_game_saved_success", self, "_on_game_saved_success") # no params
-		play_games_services.connect("_on_game_saved_fail", self, "_on_game_saved_fail") # no params
-		play_games_services.connect("_on_game_load_success", self, "_on_game_load_success") # data: String
-		play_games_services.connect("_on_game_load_fail", self, "_on_game_load_fail") # no params
+		play_games_services.connect("_on_leaderboard_score_submitting_failed", self, "_on_leaderboard_score_submitting_failed") # leaderboard_id: String no params
 		play_games_services.connect("_on_create_new_snapshot", self, "_on_create_new_snapshot") # name: String
 		play_games_services.connect("_on_player_info_loaded", self, "_on_player_info_loaded")  # json_response: String
 		play_games_services.connect("_on_player_info_loading_failed", self, "_on_player_info_loading_failed")
@@ -59,28 +55,11 @@ func _on_leaderboard_score_submitting_failed(leaderboard_id: String):
 	pass
 	
 func _on_sign_in_success(account_id: String) -> void:
-	load_snapshot("saved_game")
 	pass
   
 func _on_sign_in_failed(error_code: int) -> void:
 	pass
 
-func _on_game_saved_success():
-	OS.alert('Success', 'Message Title')
-	pass
-	
-func _on_game_saved_fail():
-	OS.alert('Fail', 'Message Title')
-	pass	
-func save_snapshot(name, data_to_save, description):
-	play_games_services.saveSnapshot(name, to_json(data_to_save), description)
-
-func load_snapshot(name):
-	if(play_games_services != null):
-		play_games_services.loadSnapshot(name)
-
-func _on_game_load_success(data):
-	emit_signal("load_game",data)
 
 func submit_score(score):
 	if(play_games_services != null):

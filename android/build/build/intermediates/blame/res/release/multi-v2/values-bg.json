@@ -1,27 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\cetes\\Documents\\GitHub\\WordFinding\\wordfinding\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-bg\\values-bg.xml",
+            "outputFile": "C:\\Users\\ahmetilgin\\Documents\\GitHub\\WordFinding\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-bg\\values-bg.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\cetes\\.gradle\\caches\\transforms-2\\files-2.1\\96992ba8e386c900bb8f57d2baa98bcd\\play-services-base-17.1.0\\res\\values-bg\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "245,352,549,682,791,1017,1150,1295,1429,1657,1767,1973,2109,2325,2517,2613,2698",
-                        "endColumns": "106,196,132,108,225,132,144,133,227,109,205,135,215,191,95,84,97",
-                        "endOffsets": "351,548,681,790,1016,1149,1294,1428,1656,1766,1972,2108,2324,2516,2612,2697,2795"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,216,413,550,663,889,1026,1175,1510,1738,1852,2058,2198,2414,2610,2710,2799",
-                        "endColumns": "110,196,136,112,225,136,148,137,227,113,205,139,215,195,99,88,101",
-                        "endOffsets": "211,408,545,658,884,1021,1170,1308,1733,1847,2053,2193,2409,2605,2705,2794,2896"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\cetes\\.gradle\\caches\\transforms-2\\files-2.1\\2f29423de5771cd0c2f475b364e10860\\godot-lib.release\\res\\values-bg\\values-bg.xml",
+                    "source": "C:\\Users\\ahmetilgin\\.gradle\\caches\\transforms-2\\files-2.1\\2f29423de5771cd0c2f475b364e10860\\godot-lib.release\\res\\values-bg\\values-bg.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -38,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\cetes\\.gradle\\caches\\transforms-2\\files-2.1\\947833f03979c6d84fcd9a8feba7ce42\\core-1.0.0\\res\\values-bg\\values-bg.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "28",
-                        "startColumns": "4",
-                        "startOffsets": "3636",
-                        "endColumns": "100",
-                        "endOffsets": "3732"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\cetes\\.gradle\\caches\\transforms-2\\files-2.1\\2b0094f6cfc4a85905731f258cd5d0de\\jetified-play-services-basement-17.1.1\\res\\values-bg\\values.xml",
+                    "source": "C:\\Users\\ahmetilgin\\.gradle\\caches\\transforms-2\\files-2.1\\eafe9b403d5f18f764cc7e9adac2c0d4\\jetified-play-services-basement-17.1.1\\res\\values-bg\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -72,7 +38,41 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\cetes\\.gradle\\caches\\transforms-2\\files-2.1\\0452d05e4b9a73169b5ac3ef58cd4bfe\\jetified-play-services-ads-19.3.0\\res\\values-bg\\values.xml",
+                    "source": "C:\\Users\\ahmetilgin\\.gradle\\caches\\transforms-2\\files-2.1\\96992ba8e386c900bb8f57d2baa98bcd\\play-services-base-17.1.0\\res\\values-bg\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "245,352,549,682,791,1017,1150,1295,1429,1657,1767,1973,2109,2325,2517,2613,2698",
+                        "endColumns": "106,196,132,108,225,132,144,133,227,109,205,135,215,191,95,84,97",
+                        "endOffsets": "351,548,681,790,1016,1149,1294,1428,1656,1766,1972,2108,2324,2516,2612,2697,2795"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,216,413,550,663,889,1026,1175,1510,1738,1852,2058,2198,2414,2610,2710,2799",
+                        "endColumns": "110,196,136,112,225,136,148,137,227,113,205,139,215,195,99,88,101",
+                        "endOffsets": "211,408,545,658,884,1021,1170,1308,1733,1847,2053,2193,2409,2605,2705,2794,2896"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ahmetilgin\\.gradle\\caches\\transforms-2\\files-2.1\\947833f03979c6d84fcd9a8feba7ce42\\core-1.0.0\\res\\values-bg\\values-bg.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "28",
+                        "startColumns": "4",
+                        "startOffsets": "3636",
+                        "endColumns": "100",
+                        "endOffsets": "3732"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ahmetilgin\\.gradle\\caches\\transforms-2\\files-2.1\\41ef9cbd0046b5eb8a65619f7baf5ab6\\jetified-play-services-ads-19.3.0\\res\\values-bg\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10",
                         "startColumns": "0,0,0,0,0,0,0",

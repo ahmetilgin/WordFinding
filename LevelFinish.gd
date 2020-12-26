@@ -9,11 +9,8 @@ var sum_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GoogleService.connect("load_game",self,"loaded_game")
-	GoogleService.load_snapshot("saved_game")
 	admob_load_interstitial()
 	var popup_size = $LevelFinish/TextureRect.get_texture().get_size()  
- 
 	var popup_oran = OS.window_size / popup_size
 	$ColorRect/ColorRect.rect_size = OS.window_size
 	$ColorRect.set_global_position(Vector2(0, 0 ))
@@ -41,14 +38,12 @@ func sum_point(time, star):
 	
 func _on_Restart_pressed():
 	admob_show_interstitial()
-	Globals.game_finish = false
 	get_tree().reload_current_scene()
 	pass # Replace with function body.
 
 
 func _on_LevelSelect_pressed():
 	admob_show_interstitial()
-	Globals.game_finish = false
 	$LevelFinish.hide()
 	$Node.set_visible(true)
 	pass # Replace with function body.
@@ -87,46 +82,42 @@ func get_saved_data():
 	return node_data;
 	pass
 
-func loaded_game(data):
+func save_and_increase_current_money():
 	var date = OS.get_date()
 	var time_return = String(date.year) +":"+String(date.month)+":"+String(date.day)
+	var save_game = File.new()
+	var saved_data = get_saved_data()
 	var daily_money = 0
-	if(data.has("money")):
-		daily_money = int(data["money"])
+	
+	if(saved_data.has("money")):
+		 daily_money = int(saved_data["money"])
 	var totalMoney = 0
-	if(data.has("totalMoney")):
-		totalMoney = int(data["totalMoney"])
+	if(saved_data.has("totalMoney")):
+		totalMoney = int(saved_data["totalMoney"])
 	var saved_date = ""
-	if(data.has("date")):
-		saved_date = data["date"]
+	if(saved_data.has("date")):
+		saved_date = saved_data["date"]
 	else:
 		saved_date = time_return
-		
+	save_game.open("user://save_money.save", File.WRITE)
+	
 	if time_return == saved_date:
 		daily_money += money_count
 	else:
 		daily_money = money_count
+		
 	var money_json = {
 		"money" : daily_money,
 		"date" : time_return,
-		"totalMoney": totalMoney + money_count,
+		"totalMoney": totalMoney + money_count
 	}
-	GoogleService.save_snapshot("saved_game", money_json, "description")
+	save_game.store_line(to_json(money_json))
+	save_game.close()
 	GoogleService.submit_score(daily_money)
-
-func save_and_increase_current_money():
-	GoogleService.load_snapshot("saved_data")
-	pass
 	
-func _on_game_saved_success():
-	pass
-	
-func _on_game_saved_fail():
-	pass
 		
 func _on_MainMenu_pressed():
 	admob_show_interstitial()
-	Globals.game_finish = false
 	get_tree().change_scene("res://MainMenu.tscn")
 	pass # Replace with function body.
 	
