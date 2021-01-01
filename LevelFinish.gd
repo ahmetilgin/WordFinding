@@ -105,6 +105,7 @@ func save_and_increase_current_money():
 		daily_money += money_count
 	else:
 		daily_money = money_count
+		totalMoney = money_count
 		
 	var money_json = {
 		"money" : daily_money,

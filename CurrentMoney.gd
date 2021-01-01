@@ -7,6 +7,8 @@ extends RichTextLabel
 
 
 func load_money():
+	var date = OS.get_date()
+	var time_return = String(date.year) +":"+String(date.month)+":"+String(date.day)
 	var save_money = File.new()
 
 	if not save_money.file_exists("user://save_money.save"):
@@ -21,6 +23,19 @@ func load_money():
 			save_money.close();
 			return 
 		
+		var saved_date = ""
+		if(node_data.has("date")):
+			saved_date = node_data["date"]
+			if saved_date != time_return:
+				current_money = 0
+				set_text(str(current_money))
+				save_money.close();
+				return
+		else:
+			current_money = 0
+			set_text(str(current_money))
+			save_money.close();
+			return
 		if node_data.has("totalMoney"):
 			current_money = int(node_data["totalMoney"])
 		else:
