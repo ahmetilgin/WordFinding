@@ -1,4 +1,4 @@
-com.godot.game
+org.godotengine.wordfinding
 attr adSize
 attr adSizes
 attr adUnitId

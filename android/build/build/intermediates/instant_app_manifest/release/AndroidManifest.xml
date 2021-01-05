@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.godot.game"
+    package="org.godotengine.wordfinding"
     android:installLocation="auto"
     android:targetSandboxVersion="2"
     android:versionCode="1"
@@ -130,7 +130,7 @@
 
         <provider
             android:name="com.google.android.gms.ads.MobileAdsInitProvider"
-            android:authorities="com.godot.game.mobileadsinitprovider"
+            android:authorities="org.godotengine.wordfinding.mobileadsinitprovider"
             android:exported="false"
             android:initOrder="100" />
     </application>

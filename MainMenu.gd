@@ -10,7 +10,7 @@ extends Node2D
 func _ready():
 	if(Globals.is_tutorialed):
 		get_node("tutorial")._on_okey_pressed()
-
+	Globals.game_finish  = false
 	var topgui_size = $topgui.get_texture().get_size()  
 	var bottomgui_size = $bottomgui.get_texture().get_size()  
 	var topgui_oran = OS.window_size / topgui_size
