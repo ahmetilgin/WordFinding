@@ -123,7 +123,7 @@ func _on_MainMenu_pressed():
 	pass # Replace with function body.
 	
 func admob_show_interstitial():
-	Globals.advertise_wait_count += 1
-	if Globals.advertise_wait_count == int(rand_range(3, 6)):
+	if Globals.advertise_wait_count == int(rand_range(1, 3)):
 		get_parent().get_node("AdMob").show_interstitial()
 		Globals.advertise_wait_count = 0
+	Globals.advertise_wait_count += 1

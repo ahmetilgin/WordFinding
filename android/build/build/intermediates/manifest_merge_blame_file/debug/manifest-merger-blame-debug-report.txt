@@ -2,8 +2,8 @@
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="org.godotengine.wordfinding"
 4    android:installLocation="auto"
-5    android:versionCode="1"
-6    android:versionName="1.0" >
+5    android:versionCode="13"
+6    android:versionName="2.7" >
 7
 8    <uses-sdk
 9        android:minSdkVersion="18"
@@ -106,7 +106,7 @@
 67
 68        <activity
 68-->C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:51:9-68:20
-69            android:name="com.godot.game.GodotApp"
+69            android:name="org.godotengine.wordfinding.GodotApp"
 69-->C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:52:13-37
 70            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|density|keyboard|navigation|screenLayout|uiMode"
 70-->C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:57:13-141

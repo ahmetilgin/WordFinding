@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.godot.game"
-    android:versionCode="1"
-    android:versionName="1.0"
+    package="org.godotengine.wordfinding"
+    android:versionCode="13"
+    android:versionName="2.7"
     android:installLocation="auto" >
 
     <!-- Adding custom text to the manifest is fine, but do it outside the custom USER and APPLICATION BEGIN/END comments, -->

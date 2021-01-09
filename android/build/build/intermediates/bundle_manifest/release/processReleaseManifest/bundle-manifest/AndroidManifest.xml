@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.godotengine.wordfinding"
     android:installLocation="auto"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="13"
+    android:versionName="2.7" >
 
     <uses-sdk
         android:minSdkVersion="18"
@@ -66,7 +66,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.godot.game.GodotApp"
+            android:name="org.godotengine.wordfinding.GodotApp"
             android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|density|keyboard|navigation|screenLayout|uiMode"
             android:label="@string/godot_project_name_string"
             android:launchMode="singleTask"

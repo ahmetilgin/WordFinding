@@ -55,6 +55,7 @@ func _on_leaderboard_score_submitting_failed(leaderboard_id: String):
 	pass
 	
 func _on_sign_in_success(account_id: String) -> void:
+	
 	pass
   
 func _on_sign_in_failed(error_code: int) -> void:

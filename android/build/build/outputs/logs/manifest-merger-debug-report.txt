@@ -52,7 +52,7 @@ INJECTED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\bu
 INJECTED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:2:1-79:12
 INJECTED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:2:1-79:12
 	package
-		ADDED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:4:5-29
+		ADDED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:4:5-42
 		INJECTED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml
 		INJECTED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml
 	android:versionName
@@ -64,7 +64,7 @@ INJECTED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\bu
 	xmlns:android
 		ADDED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:5:5-28
+		ADDED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:5:5-29
 		INJECTED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml
 		INJECTED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml
 	android:installLocation
@@ -157,7 +157,7 @@ MERGED from [com.google.android.gms:play-services-basement:17.1.1] C:\Users\cete
 		ADDED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:48:10-63
 	android:name
 		ADDED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:47:17-62
-activity#com.godot.game.GodotApp
+activity#org.godotengine.wordfinding.GodotApp
 ADDED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:51:9-68:20
 	android:screenOrientation
 		ADDED from C:\Users\cetes\Documents\GitHub\WordFinding\wordfinding\android\build\AndroidManifest.xml:56:13-50
